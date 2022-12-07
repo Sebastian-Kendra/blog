@@ -33,6 +33,7 @@ export default {
             editing: false,
             newText: '',
             oldText: '',
+            user: [],
         }
     },
     mounted() {
@@ -81,7 +82,7 @@ export default {
             this.$refs.comment.innerText = this.oldText
         },
         getUser() {
-            axios.get('/users/' + this.commentData.user_id) // tu som skoncil
+            axios.get('/users') // tu som skoncil
         },
         userName() {
             // console.log(user)
