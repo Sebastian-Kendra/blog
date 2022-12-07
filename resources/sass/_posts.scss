@@ -1,0 +1,28 @@
+/**
+* POST (ARTICLE)
+*/
+.post {
+	background: $dark;
+	border-radius: 0.75em;
+	padding: 1.1em 1.45em 1.4em;
+
+	.title {
+		margin-bottom: 0.65em;
+	}
+
+	header {
+		text-align: center;
+	}
+
+	.content,
+	footer {
+		font-size: 1rem;
+	}
+}
+
+.full {
+	.content,
+	footer {
+		font-size: 1.2rem;
+	}
+}
