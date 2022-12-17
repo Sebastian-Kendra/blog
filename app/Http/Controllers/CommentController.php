@@ -43,6 +43,11 @@ class CommentController extends Controller
         $comment->save();
     }
 
+    public function user(Comment $comment)
+    {
+        $comment->user->name;
+    }
+
     /**
      * Remove the specified resource from storage.
      */

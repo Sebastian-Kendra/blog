@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
     props: ['post-id'],
     data() {
@@ -33,17 +32,10 @@ export default {
             console.log(this.postId)
         },
         subForm() {
-            axios
-                .post('/comments', {
-                    text: this.query,
-                    post_id: this.postId,
-                })
-                .then((response) => {
-                    window.flash('Komentar še pridal')
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
+            window.eventBus.emit('new-comment-comming', {
+                text: this.query,
+                post_id: this.postId,
+            })
         },
     },
 }

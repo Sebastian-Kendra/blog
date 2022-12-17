@@ -13,8 +13,10 @@
         </div>
 
         <footer class="meta">
-            <a class="author"> @<strong @click="userName">Author</strong> </a>
-            <time datetime="pre-pc" class="has-text-grey"> pre človeka </time>
+            <a class="author"> @<strong>Author</strong> </a>
+            <time :datetime="this.commentData.created_at" class="has-text-grey">
+                {{ date }}
+            </time>
 
             <span class="controls has-text-gray">
                 <a class="edit" @click="startEdit">edit</a>
@@ -26,6 +28,8 @@
 
 <script>
 import axios from 'axios'
+import moment from 'moment'
+
 export default {
     props: ['comment-data'],
     data() {
@@ -33,13 +37,17 @@ export default {
             editing: false,
             newText: '',
             oldText: '',
-            user: [],
+            date: '',
         }
     },
     mounted() {
         this.oldText = this.newText = this.commentData.text
+        this.dateForUser()
     },
     methods: {
+        dateForUser() {
+            this.date = moment(this.commentData.created_at).fromNow()
+        },
         startEdit() {
             this.editing = true
             this.selectCell()
@@ -80,12 +88,6 @@ export default {
         notUpdate() {
             this.editing = false
             this.$refs.comment.innerText = this.oldText
-        },
-        getUser() {
-            axios.get('/users') // tu som skoncil
-        },
-        userName() {
-            // console.log(user)
         },
     },
 }

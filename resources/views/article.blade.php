@@ -17,7 +17,7 @@
 		</a>
 
 		<a href="/posts/{{ $post->slug }}#comments" class="comments">
-            <comment-calc :comment-data= '{{ $post->comments }}'></comment-calc>
+            <comment-calc :post-id= '{{ $post->id }}' :comment-data= '{{ $post->comments }}'></comment-calc>
             <strong>{{ str_plural( 'comment', $post->comments->count()) }}</strong>
 		</a>
 	</footer>

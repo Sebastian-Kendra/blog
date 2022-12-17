@@ -1,15 +1,16 @@
 <template>
     <div>
-        <li v-for="comment in comments" :key="comment.id">
+        <li v-for="comment in newComments" :key="comment.id">
             <comment-view
-                @click="showUser"
                 :comment-data="comment"
+                :post-id="postData.id"
             ></comment-view>
         </li>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 import CommentView from './CommentView.vue'
 export default {
     components: {
@@ -19,17 +20,35 @@ export default {
     data() {
         return {
             comments: this.postData.comments,
+            newComments: [],
         }
     },
     mounted() {
-        //updateComments()
+        this.newComments = this.comments
+        window.eventBus.on('new-comment-comming', (e) => {
+            axios
+                .post('/comments', {
+                    text: e.text,
+                    post_id: e.post_id,
+                })
+                .then(() => {
+                    window.flash('Komentar še pridal')
+                    this.reloadComments()
+                    window.eventBus.emit('change-numbero')
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        })
     },
     methods: {
-        showUser() {
-            //
-        },
-        updateComments() {
-            //
+        reloadComments() {
+            axios.get('/api/comments').then((response) => {
+                let postComments = response.data.filter(
+                    (comment) => comment.post_id === this.postData.id
+                )
+                this.newComments = postComments.reverse()
+            })
         },
     },
 }

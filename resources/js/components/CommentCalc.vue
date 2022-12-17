@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-    props: ['comment-data'],
+    props: ['comment-data', 'post-id'],
     data() {
         return {
             commentLength: '',
@@ -13,6 +13,7 @@ export default {
     mounted() {
         this.changeNum()
         this.reactChange()
+        this.reloadNum()
     },
     methods: {
         changeNum() {
@@ -21,6 +22,17 @@ export default {
         reactChange() {
             window.eventBus.on('delete', (e) => {
                 this.newLength = this.commentLength - e
+            })
+        },
+        reloadNum() {
+            window.eventBus.on('change-numbero', () => {
+                axios.get('/api/comments').then((response) => {
+                    let postComments = response.data.filter(
+                        (comment) => comment.post_id === this.postId
+                    )
+
+                    this.newLength = this.commentLength = postComments.length
+                })
             })
         },
     },

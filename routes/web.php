@@ -23,10 +23,9 @@ Route::get('/', [PostController::class, 'index']);
 
 Route::resource('posts', PostController::class);
 
-Route::resource('users', UserController::class)->only('show');
-
 Route::resource('comments', CommentController::class)->only(
     'store',
     'update',
+    'user',
     'destroy'
 );

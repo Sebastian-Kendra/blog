@@ -1,4 +1,4 @@
-<comment-view :comment-data= '{{ $comment }}' inline-template>
+{{-- <comment-view :comment-data= '{{ $comment }}' inline-template>
     <article class="comment" >
 
         <div class="content" 
@@ -30,4 +30,4 @@
         </footer>
 
     </article>
-</comment-view>
+</comment-view> --}}
