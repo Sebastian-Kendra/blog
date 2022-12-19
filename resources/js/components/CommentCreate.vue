@@ -28,9 +28,6 @@ export default {
         }
     },
     methods: {
-        getSomething() {
-            console.log(this.postId)
-        },
         subForm() {
             window.eventBus.emit('new-comment-comming', {
                 text: this.query,

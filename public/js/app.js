@@ -2123,9 +2123,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getSomething: function getSomething() {
-      console.log(this.postId);
-    },
     subForm: function subForm() {
       window.eventBus.emit('new-comment-comming', {
         text: this.query,
@@ -2166,6 +2163,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     var _this = this;
+    this.getUser();
     this.newComments = this.comments;
     window.eventBus.on('new-comment-comming', function (e) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/comments', {
@@ -2188,6 +2186,11 @@ __webpack_require__.r(__webpack_exports__);
           return comment.post_id === _this2.postData.id;
         });
         _this2.newComments = postComments.reverse();
+      });
+    },
+    getUser: function getUser() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/users').then(function (response) {
+        window.eventBus.emit('sent-users', response.data);
       });
     }
   }
@@ -2219,10 +2222,19 @@ __webpack_require__.r(__webpack_exports__);
       editing: false,
       newText: '',
       oldText: '',
-      date: ''
+      date: '',
+      commentUser: ''
     };
   },
+  computed: {},
   mounted: function mounted() {
+    var _this = this;
+    window.eventBus.on('sent-users', function (e) {
+      var name = e.find(function (user) {
+        return user.id === _this.commentData.user_id;
+      }).name;
+      _this.commentUser = name;
+    });
     this.oldText = this.newText = this.commentData.text;
     this.dateForUser();
   },
@@ -2235,9 +2247,9 @@ __webpack_require__.r(__webpack_exports__);
       this.selectCell();
     },
     selectCell: function selectCell() {
-      var _this = this;
+      var _this2 = this;
       setTimeout(function () {
-        var p = _this.$refs.comment,
+        var p = _this2.$refs.comment,
           s = window.getSelection(),
           r = document.createRange();
         r.setStart(p, 0);
@@ -2269,6 +2281,12 @@ __webpack_require__.r(__webpack_exports__);
     notUpdate: function notUpdate() {
       this.editing = false;
       this.$refs.comment.innerText = this.oldText;
+    },
+    userName: function userName(e) {
+      var _this3 = this;
+      e.find(function (user) {
+        return user.id === _this3.commentData.user_id;
+      }).name;
     }
   }
 });
@@ -2479,7 +2497,9 @@ var render = function render() {
     }
   }, [_vm._v("\n        " + _vm._s(_vm.commentData.text) + "\n    ")]), _vm._v(" "), _c("footer", {
     staticClass: "meta"
-  }, [_vm._m(0), _vm._v(" "), _c("time", {
+  }, [_c("a", {
+    staticClass: "author"
+  }, [_vm._v("\n            @"), _c("strong", [_vm._v(_vm._s(_vm.commentUser))])]), _vm._v(" "), _c("time", {
     staticClass: "has-text-grey",
     attrs: {
       datetime: this.commentData.created_at
@@ -2498,13 +2518,7 @@ var render = function render() {
     }
   }, [_vm._v("x")])])])]);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("a", {
-    staticClass: "author"
-  }, [_vm._v(" @"), _c("strong", [_vm._v("Author")])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 

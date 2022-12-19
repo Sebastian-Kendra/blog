@@ -13,7 +13,9 @@
         </div>
 
         <footer class="meta">
-            <a class="author"> @<strong>Author</strong> </a>
+            <a class="author">
+                @<strong>{{ commentUser }}</strong>
+            </a>
             <time :datetime="this.commentData.created_at" class="has-text-grey">
                 {{ date }}
             </time>
@@ -38,9 +40,17 @@ export default {
             newText: '',
             oldText: '',
             date: '',
+            commentUser: '',
         }
     },
+    computed: {},
     mounted() {
+        window.eventBus.on('sent-users', (e) => {
+            let name = e.find(
+                (user) => user.id === this.commentData.user_id
+            ).name
+            this.commentUser = name
+        })
         this.oldText = this.newText = this.commentData.text
         this.dateForUser()
     },
@@ -88,6 +98,9 @@ export default {
         notUpdate() {
             this.editing = false
             this.$refs.comment.innerText = this.oldText
+        },
+        userName(e) {
+            e.find((user) => user.id === this.commentData.user_id).name
         },
     },
 }

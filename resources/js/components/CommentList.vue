@@ -24,6 +24,7 @@ export default {
         }
     },
     mounted() {
+        this.getUser()
         this.newComments = this.comments
         window.eventBus.on('new-comment-comming', (e) => {
             axios
@@ -48,6 +49,11 @@ export default {
                     (comment) => comment.post_id === this.postData.id
                 )
                 this.newComments = postComments.reverse()
+            })
+        },
+        getUser() {
+            axios.get('/api/users').then((response) => {
+                window.eventBus.emit('sent-users', response.data)
             })
         },
     },
