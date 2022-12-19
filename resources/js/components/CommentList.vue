@@ -4,6 +4,7 @@
             <comment-view
                 :comment-data="comment"
                 :post-id="postData.id"
+                :commentedUser="commentedUser"
             ></comment-view>
         </li>
     </div>
@@ -21,12 +22,15 @@ export default {
         return {
             comments: this.postData.comments,
             newComments: [],
+            commentedUser: '',
         }
     },
     mounted() {
         this.getUser()
         this.newComments = this.comments
         window.eventBus.on('new-comment-comming', (e) => {
+            this.commentedUser = e.commentedUser
+
             axios
                 .post('/comments', {
                     text: e.text,

@@ -21,7 +21,7 @@
 
 <script>
 export default {
-    props: ['post-id'],
+    props: ['post-id', 'commented-user'],
     data() {
         return {
             query: '',
@@ -32,6 +32,7 @@ export default {
             window.eventBus.emit('new-comment-comming', {
                 text: this.query,
                 post_id: this.postId,
+                commentedUser: this.commentedUser.name,
             })
         },
     },

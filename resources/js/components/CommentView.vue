@@ -33,14 +33,14 @@ import axios from 'axios'
 import moment from 'moment'
 
 export default {
-    props: ['comment-data'],
+    props: ['comment-data', 'commented-user'],
     data() {
         return {
             editing: false,
             newText: '',
             oldText: '',
             date: '',
-            commentUser: '',
+            commentUser: '' || this.commentedUser,
         }
     },
     computed: {},
@@ -98,9 +98,6 @@ export default {
         notUpdate() {
             this.editing = false
             this.$refs.comment.innerText = this.oldText
-        },
-        userName(e) {
-            e.find((user) => user.id === this.commentData.user_id).name
         },
     },
 }

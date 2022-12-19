@@ -2116,7 +2116,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['post-id'],
+  props: ['post-id', 'commented-user'],
   data: function data() {
     return {
       query: ''
@@ -2126,7 +2126,8 @@ __webpack_require__.r(__webpack_exports__);
     subForm: function subForm() {
       window.eventBus.emit('new-comment-comming', {
         text: this.query,
-        post_id: this.postId
+        post_id: this.postId,
+        commentedUser: this.commentedUser.name
       });
     }
   }
@@ -2158,7 +2159,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       comments: this.postData.comments,
-      newComments: []
+      newComments: [],
+      commentedUser: ''
     };
   },
   mounted: function mounted() {
@@ -2166,6 +2168,7 @@ __webpack_require__.r(__webpack_exports__);
     this.getUser();
     this.newComments = this.comments;
     window.eventBus.on('new-comment-comming', function (e) {
+      _this.commentedUser = e.commentedUser;
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/comments', {
         text: e.text,
         post_id: e.post_id
@@ -2216,14 +2219,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['comment-data'],
+  props: ['comment-data', 'commented-user'],
   data: function data() {
     return {
       editing: false,
       newText: '',
       oldText: '',
       date: '',
-      commentUser: ''
+      commentUser:  false || this.commentedUser
     };
   },
   computed: {},
@@ -2281,12 +2284,6 @@ __webpack_require__.r(__webpack_exports__);
     notUpdate: function notUpdate() {
       this.editing = false;
       this.$refs.comment.innerText = this.oldText;
-    },
-    userName: function userName(e) {
-      var _this3 = this;
-      e.find(function (user) {
-        return user.id === _this3.commentData.user_id;
-      }).name;
     }
   }
 });
@@ -2450,7 +2447,8 @@ var render = function render() {
     }, [_c("comment-view", {
       attrs: {
         "comment-data": comment,
-        "post-id": _vm.postData.id
+        "post-id": _vm.postData.id,
+        commentedUser: _vm.commentedUser
       }
     })], 1);
   }), 0);
