@@ -29,3 +29,7 @@ Route::resource('comments', CommentController::class)->only(
     'user',
     'destroy'
 );
+
+Route::get('/admin/{any?}', function () {
+    return view('layouts.admin');
+})->where('any', '.*');

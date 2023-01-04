@@ -1,0 +1,83 @@
+@import "~bulma/css/bulma.css";
+
+// icons
+//@import "~@mdi/font/css/materialdesignicons.css";
+
+.column {
+    padding: 2em 3em;
+}
+
+.layout {
+    margin-top: 0;
+    min-height: 100vh;
+
+    > .column {
+        padding-top: 1.75em;
+    }
+}
+
+.nav {
+    display: block;
+}
+
+nav a {
+    display: block;
+}
+
+.main-navbar {
+    background: #ececec;
+    border-right: 1px solid #ccc;
+}
+
+.navbar-brand {
+    a {
+        padding: 0;
+    }
+
+    img {
+        max-height: 3rem;
+    }
+}
+
+.nowrap,
+th {
+    white-space: nowrap;
+}
+
+.table {
+    a {
+        color: #909090;
+        border-bottom: 2px solid #ccc;
+    }
+}
+
+.meta {
+    min-width: 50%;
+
+    td {
+        vertical-align: middle;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav {
+        display: flex;
+    }
+
+    .main-navbar {
+        border-bottom: 1px solid #ccc;
+    }
+
+    .nav section {
+        margin-right: 2rem;
+    }
+
+    .navbar-brand {
+        min-height: auto;
+
+        a,
+        img {
+            height: 2rem;
+        }
+    }
+}
