@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="page posts-page">
-            <h1>Dashbord</h1>
+            <h1>Dashborduj</h1>
         </section>
     </div>
 </template>
