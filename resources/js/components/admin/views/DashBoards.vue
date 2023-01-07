@@ -1,5 +1,9 @@
 <template>
-    <div>Home</div>
+    <div>
+        <section class="page posts-page">
+            <h1>Dashbord</h1>
+        </section>
+    </div>
 </template>
 
 <script>

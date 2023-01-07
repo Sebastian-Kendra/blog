@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router'
 
-import Dashboards from './views/Dashboards.vue'
+import Dashboards from './views/DashBoards.vue'
 import Posts from './views/PostView.vue'
 import Comments from './views/CommentsView.vue'
 import Users from './views/UsersView.vue'
