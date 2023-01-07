@@ -11826,6 +11826,10 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   padding: 2em 3em;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
 .layout {
   margin-top: 0;
   min-height: 100vh;
