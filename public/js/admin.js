@@ -21254,7 +21254,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("section", { staticClass: "page posts-page" }, [
-        _c("h1", [_vm._v("Dashbord")]),
+        _c("h1", [_vm._v("Dashborduj")]),
       ]),
     ])
   },
