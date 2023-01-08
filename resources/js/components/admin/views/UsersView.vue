@@ -1,8 +1,10 @@
 <template>
     <div>
-        <section class="page posts-page">
-            <h1>Users</h1>
-        </section>
+        <table-search
+            name="user"
+            :count="data.length"
+            @searchQuery-change="search = $event"
+        />
 
         <table class="table is-bordered is-striped is-fullwidth">
             <thead>
@@ -14,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="user in users" :key="user.id">
+                <tr v-for="user in filtredItems" :key="user.id">
                     <td>{{ user.id }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
@@ -27,16 +29,23 @@
 
 <script>
 import axios from 'axios'
+import TableSearch from '../components/TableSearch.vue'
+import tableMixin from '../mixins/tableMixin'
+
 export default {
+    mixins: [tableMixin],
     data() {
         return {
-            users: [],
+            searchColum: 'name',
         }
     },
     created() {
         axios.get('/api/users').then((response) => {
-            this.users = response.data
+            this.data = response.data
         })
+    },
+    components: {
+        TableSearch,
     },
 }
 </script>

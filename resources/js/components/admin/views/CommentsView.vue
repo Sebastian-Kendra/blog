@@ -1,25 +1,27 @@
 <template>
     <div>
-        <section class="page posts-page">
-            <h1>Comments</h1>
-        </section>
+        <table-search
+            name="comment"
+            :count="data.length"
+            @searchQuery-change="search = $event"
+        />
 
         <table class="table is-bordered is-striped is-fullwidth">
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>comment</th>
+                    <th>text</th>
                     <th>post</th>
                     <th>user</th>
                     <th>published</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="comment in comments" :key="comment.id">
+                <tr v-for="comment in filtredItems" :key="comment.id">
                     <td>{{ comment.id }}</td>
                     <td>{{ shorten(comment.text) }}</td>
-                    <td>{{ comment.post_id }}</td>
-                    <td>{{ comment.user_id }}</td>
+                    <td>{{ comment.post.title }}</td>
+                    <td>{{ comment.user.name }}</td>
                     <td>{{ comment.created_at }}</td>
                 </tr>
             </tbody>
@@ -28,22 +30,23 @@
 </template>
 
 <script>
+import tableMixin from '../mixins/tableMixin'
+import TableSearch from '../components/TableSearch.vue'
 import axios from 'axios'
 export default {
+    mixins: [tableMixin],
     data() {
         return {
-            comments: [],
+            searchColum: 'text',
         }
     },
     created() {
         axios.get('/api/comments').then((response) => {
-            this.comments = response.data
+            this.data = response.data
         })
     },
-    methods: {
-        shorten(text, len = 50) {
-            return _.truncate(text, { length: len })
-        },
+    components: {
+        TableSearch,
     },
 }
 </script>

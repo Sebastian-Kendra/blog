@@ -2272,8 +2272,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mixins_tableMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/tableMixin */ "./resources/js/components/admin/mixins/tableMixin.js");
+/* harmony import */ var _components_TableSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/TableSearch.vue */ "./resources/js/components/admin/components/TableSearch.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -2303,27 +2305,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [_mixins_tableMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
-      comments: []
+      searchColum: 'text'
     };
   },
   created: function created() {
     var _this = this;
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/comments').then(function (response) {
-      _this.comments = response.data;
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/comments').then(function (response) {
+      _this.data = response.data;
     });
   },
-  methods: {
-    shorten: function shorten(text) {
-      var len = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
-      return _.truncate(text, {
-        length: len
-      });
-    }
+  components: {
+    TableSearch: _components_TableSearch_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -2364,9 +2366,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_TableSearch_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/TableSearch.vue */ "./resources/js/components/admin/components/TableSearch.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _mixins_tableMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/tableMixin */ "./resources/js/components/admin/mixins/tableMixin.js");
+/* harmony import */ var _components_TableSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/TableSearch.vue */ "./resources/js/components/admin/components/TableSearch.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -2399,40 +2402,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [_mixins_tableMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
-      data: [],
-      search: ''
+      searchColum: 'title'
     };
   },
   created: function created() {
     var _this = this;
-    axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/posts').then(function (response) {
       _this.data = response.data;
     });
   },
-  methods: {
-    shorten: function shorten(text) {
-      var len = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
-      return _.truncate(text, {
-        length: len
-      });
-    }
-  },
-  computed: {
-    filtredPosts: function filtredPosts() {
-      var _this2 = this;
-      return this.data.filter(function (item) {
-        return item.title.toLowerCase().includes(_this2.search.toLowerCase());
-      });
-    }
-  },
   components: {
-    TableSearch: _components_TableSearch_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    TableSearch: _components_TableSearch_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -2451,6 +2439,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_TableSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/TableSearch.vue */ "./resources/js/components/admin/components/TableSearch.vue");
+/* harmony import */ var _mixins_tableMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/tableMixin */ "./resources/js/components/admin/mixins/tableMixin.js");
 //
 //
 //
@@ -2478,19 +2468,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [_mixins_tableMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {
-      users: []
+      searchColum: 'name'
     };
   },
   created: function created() {
     var _this = this;
     axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/users').then(function (response) {
-      _this.users = response.data;
+      _this.data = response.data;
     });
+  },
+  components: {
+    TableSearch: _components_TableSearch_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -2525,6 +2523,44 @@ function flash(string) {
   window.eventBus.emit('flash', string);
 }
 window.flash = flash;
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/mixins/tableMixin.js":
+/*!************************************************************!*\
+  !*** ./resources/js/components/admin/mixins/tableMixin.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      data: [],
+      search: ''
+    };
+  },
+  methods: {
+    shorten: function shorten(text) {
+      var len = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+      return _.truncate(text, {
+        length: len
+      });
+    }
+  },
+  computed: {
+    filtredItems: function filtredItems() {
+      var _this = this;
+      return this.data.filter(function (item) {
+        return item[_this.searchColum].toLowerCase().includes(_this.search.toLowerCase());
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -21482,41 +21518,48 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("table", { staticClass: "table is-bordered is-striped is-fullwidth" }, [
-      _vm._m(1),
+  return _c(
+    "div",
+    [
+      _c("table-search", {
+        attrs: { name: "comment", count: _vm.data.length },
+        on: {
+          "searchQuery-change": function ($event) {
+            _vm.search = $event
+          },
+        },
+      }),
       _vm._v(" "),
       _c(
-        "tbody",
-        _vm._l(_vm.comments, function (comment) {
-          return _c("tr", { key: comment.id }, [
-            _c("td", [_vm._v(_vm._s(comment.id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.shorten(comment.text)))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(comment.post_id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(comment.user_id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(comment.created_at))]),
-          ])
-        }),
-        0
+        "table",
+        { staticClass: "table is-bordered is-striped is-fullwidth" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.filtredItems, function (comment) {
+              return _c("tr", { key: comment.id }, [
+                _c("td", [_vm._v(_vm._s(comment.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.shorten(comment.text)))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(comment.post.title))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(comment.user.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(comment.created_at))]),
+              ])
+            }),
+            0
+          ),
+        ]
       ),
-    ]),
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "page posts-page" }, [
-      _c("h1", [_vm._v("Comments")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -21525,7 +21568,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("id")]),
         _vm._v(" "),
-        _c("th", [_vm._v("comment")]),
+        _c("th", [_vm._v("text")]),
         _vm._v(" "),
         _c("th", [_vm._v("post")]),
         _vm._v(" "),
@@ -21614,7 +21657,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.filtredPosts, function (post) {
+            _vm._l(_vm.filtredItems, function (post) {
               return _c("tr", { key: post.id }, [
                 _c("td", [_vm._v(_vm._s(post.id))]),
                 _vm._v(" "),
@@ -21627,7 +21670,7 @@ var render = function () {
                   _c("small", [_vm._v(_vm._s(_vm.shorten(post.text)))]),
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(post.user_id))]),
+                _c("td", [_vm._v(_vm._s(post.user.name))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(post.created_at))]),
               ])
@@ -21680,39 +21723,46 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("table", { staticClass: "table is-bordered is-striped is-fullwidth" }, [
-      _vm._m(1),
+  return _c(
+    "div",
+    [
+      _c("table-search", {
+        attrs: { name: "user", count: _vm.data.length },
+        on: {
+          "searchQuery-change": function ($event) {
+            _vm.search = $event
+          },
+        },
+      }),
       _vm._v(" "),
       _c(
-        "tbody",
-        _vm._l(_vm.users, function (user) {
-          return _c("tr", { key: user.id }, [
-            _c("td", [_vm._v(_vm._s(user.id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.name))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.email))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.created_at))]),
-          ])
-        }),
-        0
+        "table",
+        { staticClass: "table is-bordered is-striped is-fullwidth" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.filtredItems, function (user) {
+              return _c("tr", { key: user.id }, [
+                _c("td", [_vm._v(_vm._s(user.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.email))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.created_at))]),
+              ])
+            }),
+            0
+          ),
+        ]
       ),
-    ]),
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "page posts-page" }, [
-      _c("h1", [_vm._v("Users")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

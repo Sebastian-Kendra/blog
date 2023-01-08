@@ -16,13 +16,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="post in filtredPosts" :key="post.id">
+                <tr v-for="post in filtredItems" :key="post.id">
                     <td>{{ post.id }}</td>
                     <td>
                         {{ post.title }}
                         <small>{{ shorten(post.text) }}</small>
                     </td>
-                    <td>{{ post.user_id }}</td>
+                    <td>{{ post.user.name }}</td>
                     <td>{{ post.created_at }}</td>
                 </tr>
             </tbody>
@@ -31,33 +31,20 @@
 </template>
 
 <script>
+import tableMixin from '../mixins/tableMixin'
 import TableSearch from '../components/TableSearch.vue'
 import axios from 'axios'
 export default {
+    mixins: [tableMixin],
     data() {
         return {
-            data: [],
-            search: '',
+            searchColum: 'title',
         }
     },
     created() {
         axios.get('/api/posts').then((response) => {
             this.data = response.data
         })
-    },
-    methods: {
-        shorten(text, len = 50) {
-            return _.truncate(text, { length: len })
-        },
-    },
-    computed: {
-        filtredPosts() {
-            return this.data.filter((item) => {
-                return item.title
-                    .toLowerCase()
-                    .includes(this.search.toLowerCase())
-            })
-        },
     },
     components: {
         TableSearch,
