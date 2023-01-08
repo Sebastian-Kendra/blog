@@ -2,7 +2,8 @@
     <div>
         <table-search
             name="post"
-            :count="data.length"
+            :count="filtredItems.length"
+            :trueCount="data.length"
             @searchQuery-change="search = $event"
         />
 
@@ -13,6 +14,7 @@
                     <th>title</th>
                     <th>user</th>
                     <th>published</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -22,8 +24,15 @@
                         {{ post.title }}
                         <small>{{ shorten(post.text) }}</small>
                     </td>
-                    <td>{{ post.user.name }}</td>
-                    <td>{{ post.created_at }}</td>
+                    <td>
+                        <a :href="'/admin/users/' + post.user.id">
+                            {{ post.user.name }}
+                        </a>
+                    </td>
+                    <td>{{ niceDate(post.created_at) }}</td>
+                    <td>
+                        <edit-links source="post" :id="post.id" />
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -34,6 +43,7 @@
 import tableMixin from '../mixins/tableMixin'
 import TableSearch from '../components/TableSearch.vue'
 import axios from 'axios'
+import EditLinks from '../components/EditLinks.vue'
 export default {
     mixins: [tableMixin],
     data() {
@@ -48,6 +58,8 @@ export default {
     },
     components: {
         TableSearch,
+        EditLinks,
+        EditLinks,
     },
 }
 </script>

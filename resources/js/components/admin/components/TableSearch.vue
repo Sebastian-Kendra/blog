@@ -6,7 +6,8 @@
             <div class="level-left">
                 <div class="level-item">
                     <p class="subtitle is-5">
-                        <strong>{{ count }}</strong> {{ name }}s
+                        <strong>{{ count }} of {{ trueCount }}</strong>
+                        {{ name }}s
                     </p>
                 </div>
                 <div class="level-item">
@@ -20,7 +21,13 @@
                             />
                         </p>
                         <p class="control">
-                            <button class="button">Search</button>
+                            <button
+                                class="button"
+                                v-show="this.searchQuery != ''"
+                                @click="resetQuery"
+                            >
+                                Reset
+                            </button>
                         </p>
                     </div>
                 </div>
@@ -29,7 +36,9 @@
             <!-- Right side -->
             <div class="level-right">
                 <p class="level-item">
-                    <a class="button is-success">New {{ name }}</a>
+                    <a :href="`/admin/${name}s/new`" class="button is-success"
+                        >New {{ name }}</a
+                    >
                 </p>
             </div>
         </nav>
@@ -45,11 +54,19 @@ export default {
         count: {
             type: Number,
         },
+        trueCount: {
+            type: Number,
+        },
     },
     data() {
         return {
             searchQuery: '',
         }
+    },
+    methods: {
+        resetQuery() {
+            this.searchQuery = ''
+        },
     },
     watch: {
         searchQuery(value) {

@@ -2,7 +2,8 @@
     <div>
         <table-search
             name="user"
-            :count="data.length"
+            :count="filtredItems.length"
+            :trueCount="data.length"
             @searchQuery-change="search = $event"
         />
 
@@ -13,6 +14,7 @@
                     <th>name</th>
                     <th>email</th>
                     <th>registred at</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +22,10 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.created_at }}</td>
+                    <td>{{ niceDate(user.created_at) }}</td>
+                    <td>
+                        <edit-links source="user" :id="user.id" />
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -29,6 +34,7 @@
 
 <script>
 import axios from 'axios'
+import EditLinks from '../components/EditLinks.vue'
 import TableSearch from '../components/TableSearch.vue'
 import tableMixin from '../mixins/tableMixin'
 
@@ -46,6 +52,7 @@ export default {
     },
     components: {
         TableSearch,
+        EditLinks,
     },
 }
 </script>

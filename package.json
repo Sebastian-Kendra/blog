@@ -19,11 +19,12 @@
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
         "vue": "^2.6.12",
-        "vue-router": "3",
         "vue-loader": "^15.9.8",
+        "vue-router": "3",
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@mdi/font": "^7.1.96",
         "bulma": "^0.9.4",
         "mitt": "^3.0.0",
         "moment": "^2.29.4"

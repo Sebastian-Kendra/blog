@@ -2,7 +2,8 @@
     <div>
         <table-search
             name="comment"
-            :count="data.length"
+            :count="filtredItems.length"
+            :trueCount="data.length"
             @searchQuery-change="search = $event"
         />
 
@@ -14,15 +15,30 @@
                     <th>post</th>
                     <th>user</th>
                     <th>published</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="comment in filtredItems" :key="comment.id">
                     <td>{{ comment.id }}</td>
                     <td>{{ shorten(comment.text) }}</td>
-                    <td>{{ comment.post.title }}</td>
-                    <td>{{ comment.user.name }}</td>
-                    <td>{{ comment.created_at }}</td>
+                    <td class="nowrap">
+                        <a :href="'/admin/posts/' + comment.post_id">
+                            {{ comment.post_id }} <strong>➜</strong>
+                        </a>
+                    </td>
+                    <td>
+                        <a :href="'/admin/users/' + comment.user.id">
+                            {{ comment.user.name }}
+                        </a>
+                    </td>
+                    <td>{{ niceDate(comment.created_at) }}</td>
+                    <td>
+                        <edit-links
+                            source="comment"
+                            :id="comment.id"
+                        ></edit-links>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -33,6 +49,7 @@
 import tableMixin from '../mixins/tableMixin'
 import TableSearch from '../components/TableSearch.vue'
 import axios from 'axios'
+import EditLinks from '../components/EditLinks.vue'
 export default {
     mixins: [tableMixin],
     data() {
@@ -47,6 +64,7 @@ export default {
     },
     components: {
         TableSearch,
+        EditLinks,
     },
 }
 </script>

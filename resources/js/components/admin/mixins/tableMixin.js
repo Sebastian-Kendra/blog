@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export default {
     data() {
         return {
@@ -8,6 +10,9 @@ export default {
     methods: {
         shorten(text, len = 50) {
             return _.truncate(text, { length: len })
+        },
+        niceDate(date) {
+            return moment(date).format('DD/mm/y')
         },
     },
     computed: {

@@ -15,7 +15,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return Comment::with('post', 'user')->latest('id')->get();
+        return Comment::with('user')->latest('id')->get();
     }
 
     /**
