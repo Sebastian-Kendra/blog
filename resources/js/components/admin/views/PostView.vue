@@ -1,8 +1,10 @@
 <template>
     <div>
-        <section class="page posts-page">
-            <h1>Posts</h1>
-        </section>
+        <table-search
+            name="post"
+            :count="data.length"
+            @searchQuery-change="search = $event"
+        />
 
         <table class="table is-bordered is-striped is-fullwidth">
             <thead>
@@ -14,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="post in posts" :key="post.id">
+                <tr v-for="post in filtredPosts" :key="post.id">
                     <td>{{ post.id }}</td>
                     <td>
                         {{ post.title }}
@@ -29,22 +31,36 @@
 </template>
 
 <script>
+import TableSearch from '../components/TableSearch.vue'
 import axios from 'axios'
 export default {
     data() {
         return {
-            posts: [],
+            data: [],
+            search: '',
         }
     },
     created() {
         axios.get('/api/posts').then((response) => {
-            this.posts = response.data
+            this.data = response.data
         })
     },
     methods: {
         shorten(text, len = 50) {
             return _.truncate(text, { length: len })
         },
+    },
+    computed: {
+        filtredPosts() {
+            return this.data.filter((item) => {
+                return item.title
+                    .toLowerCase()
+                    .includes(this.search.toLowerCase())
+            })
+        },
+    },
+    components: {
+        TableSearch,
     },
 }
 </script>
