@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Dashboards from './views/DashBoards.vue'
 
 import Users from './views/users/UsersView.vue'
+import UserSingle from './views/users/UserSingle.vue'
+import UserEdit from './views/users/UserEdit.vue'
+import UserNew from './views/users/UserNew.vue'
 
 import Posts from './views/posts/PostView.vue'
 import PostSingle from './views/posts/PostSingle.vue'
@@ -10,6 +13,9 @@ import PostEdit from './views/posts/PostEdit.vue'
 import PostNew from './views/posts/PostNew.vue'
 
 import Comments from './views/comments/CommentsView.vue'
+import CommentSingle from './views/comments/CommentSingle.vue'
+import CommentEdit from './views/comments/CommentEdit.vue'
+import CommentNew from './views/comments/CommentNew.vue'
 
 Vue.use(VueRouter)
 
@@ -41,8 +47,32 @@ export default new VueRouter({
             component: Comments,
         },
         {
+            path: '/admin/comments/:id',
+            component: CommentSingle,
+        },
+        {
+            path: '/admin/comments/:id/edit',
+            component: CommentEdit,
+        },
+        {
+            path: '/admin/comments/new',
+            component: CommentNew,
+        },
+        {
             path: '/admin/users',
             component: Users,
+        },
+        {
+            path: '/admin/users/:id',
+            component: UserSingle,
+        },
+        {
+            path: '/admin/users/:id/edit',
+            component: UserEdit,
+        },
+        {
+            path: '/admin/users/new',
+            component: UserNew,
         },
     ],
 })
