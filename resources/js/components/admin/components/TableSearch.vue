@@ -36,8 +36,10 @@
             <!-- Right side -->
             <div class="level-right">
                 <p class="level-item">
-                    <a :href="`/admin/${name}s/new`" class="button is-success"
-                        >New {{ name }}</a
+                    <router-link
+                        :to="`/admin/${name}s/new`"
+                        class="button is-success"
+                        >New {{ name }}</router-link
                     >
                 </p>
             </div>

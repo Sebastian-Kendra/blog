@@ -23,14 +23,14 @@
                     <td>{{ comment.id }}</td>
                     <td>{{ shorten(comment.text) }}</td>
                     <td class="nowrap">
-                        <a :href="'/admin/posts/' + comment.post_id">
+                        <router-link :to="'/admin/posts/' + comment.post_id">
                             {{ comment.post_id }} <strong>➜</strong>
-                        </a>
+                        </router-link>
                     </td>
                     <td>
-                        <a :href="'/admin/users/' + comment.user.id">
+                        <router-link :to="'/admin/users/' + comment.user.id">
                             {{ comment.user.name }}
-                        </a>
+                        </router-link>
                     </td>
                     <td>{{ niceDate(comment.created_at) }}</td>
                     <td>

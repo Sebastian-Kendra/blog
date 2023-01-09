@@ -2,19 +2,21 @@
     <div>
         <div class="field is-grouped">
             <p class="control">
-                <a :href="`/admin/${source}s/new`" class="button is-success"
-                    >Create new</a
+                <router-link
+                    :to="`/admin/${source}s/new`"
+                    class="button is-success"
+                    >Create new</router-link
                 >
             </p>
             <p class="control">
-                <a
-                    :href="`/admin/${source}s/${id}/edit`"
+                <router-link
+                    :to="`/admin/${source}s/${id}/edit`"
                     class="button is-info is-outlined"
                 >
                     <span class="icon"
                         ><i class="mdi mdi-square-edit-outline"></i
                     ></span>
-                    <div class="text">Edit post</div></a
+                    <div class="text">Edit {{ source }}</div></router-link
                 >
             </p>
             <p class="control">
@@ -22,7 +24,7 @@
                     <span class="icon"
                         ><i class="mdi mdi-trash-can-outline"></i
                     ></span>
-                    <div class="text">Delete post</div>
+                    <div class="text">Delete {{ source }}</div>
                 </button>
             </p>
         </div>

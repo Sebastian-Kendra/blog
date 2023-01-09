@@ -25,9 +25,9 @@
                         <small>{{ shorten(post.text) }}</small>
                     </td>
                     <td>
-                        <a :href="'/admin/users/' + post.user.id">
+                        <router-link :to="'/admin/users/' + post.user.id">
                             {{ post.user.name }}
-                        </a>
+                        </router-link>
                     </td>
                     <td>{{ niceDate(post.created_at) }}</td>
                     <td>

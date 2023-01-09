@@ -2,9 +2,9 @@
     <div>
         <nav class="nav">
             <div class="navbar-brand">
-                <a class="navbar-item" href="/">
+                <router-link class="navbar-item" to="/">
                     <img src="../Logo-sk.png" />
-                </a>
+                </router-link>
             </div>
 
             <section>
@@ -21,8 +21,8 @@
 
             <section>
                 <h5 class="heading">GENERAL</h5>
-                <a href="/">Homepage</a>
-                <a href="/logout">Logout</a>
+                <router-link to="/">Homepage</router-link>
+                <router-link to="/logout">Logout</router-link>
             </section>
         </nav>
     </div>

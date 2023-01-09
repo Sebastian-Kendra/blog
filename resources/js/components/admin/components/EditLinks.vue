@@ -1,16 +1,16 @@
 <template>
     <div class="flex">
-        <a href="">
+        <router-link to="">
             <span class="icon"><i class="mdi mdi-trash-can-outline"></i></span>
-        </a>
-        <a :href="`/admin/${source}s/${id}/edit`">
+        </router-link>
+        <router-link :to="`/admin/${source}s/${id}/edit`">
             <span class="icon"
                 ><i class="mdi mdi-square-edit-outline"></i
             ></span>
-        </a>
-        <a :href="`/admin/${source}s/${id}`">
+        </router-link>
+        <router-link :to="`/admin/${source}s/${id}`">
             <span class="icon"><i class="mdi mdi-eye-outline"></i></span>
-        </a>
+        </router-link>
     </div>
 </template>
 

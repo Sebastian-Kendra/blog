@@ -2137,6 +2137,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2196,6 +2198,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
 //
 //
 //
@@ -44366,33 +44370,55 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "field is-grouped" }, [
-      _c("p", { staticClass: "control" }, [
-        _c(
-          "a",
-          {
-            staticClass: "button is-success",
-            attrs: { href: "/admin/" + _vm.source + "s/new" },
-          },
-          [_vm._v("Create new")]
-        ),
-      ]),
+      _c(
+        "p",
+        { staticClass: "control" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "button is-success",
+              attrs: { to: "/admin/" + _vm.source + "s/new" },
+            },
+            [_vm._v("Create new")]
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "p",
+        { staticClass: "control" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "button is-info is-outlined",
+              attrs: { to: "/admin/" + _vm.source + "s/" + _vm.id + "/edit" },
+            },
+            [
+              _c("span", { staticClass: "icon" }, [
+                _c("i", { staticClass: "mdi mdi-square-edit-outline" }),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text" }, [
+                _vm._v("Edit " + _vm._s(_vm.source)),
+              ]),
+            ]
+          ),
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("p", { staticClass: "control" }, [
-        _c(
-          "a",
-          {
-            staticClass: "button is-info is-outlined",
-            attrs: { href: "/admin/" + _vm.source + "s/" + _vm.id + "/edit" },
-          },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "text" }, [_vm._v("Edit post")]),
-          ]
-        ),
+        _c("button", { staticClass: "button is-danger is-outlined" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "text" }, [
+            _vm._v("Delete " + _vm._s(_vm.source)),
+          ]),
+        ]),
       ]),
-      _vm._v(" "),
-      _vm._m(1),
     ]),
   ])
 }
@@ -44402,21 +44428,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "mdi mdi-square-edit-outline" }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "control" }, [
-      _c("button", { staticClass: "button is-danger is-outlined" }, [
-        _c("span", { staticClass: "icon" }, [
-          _c("i", { staticClass: "mdi mdi-trash-can-outline" }),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "text" }, [_vm._v("Delete post")]),
-      ]),
+      _c("i", { staticClass: "mdi mdi-trash-can-outline" }),
     ])
   },
 ]
@@ -44442,48 +44454,40 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "a",
-      { attrs: { href: "/admin/" + _vm.source + "s/" + _vm.id + "/edit" } },
-      [_vm._m(1)]
-    ),
-    _vm._v(" "),
-    _c("a", { attrs: { href: "/admin/" + _vm.source + "s/" + _vm.id } }, [
-      _vm._m(2),
-    ]),
-  ])
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "" } }, [
-      _c("span", { staticClass: "icon" }, [
-        _c("i", { staticClass: "mdi mdi-trash-can-outline" }),
+  return _c(
+    "div",
+    { staticClass: "flex" },
+    [
+      _c("router-link", { attrs: { to: "" } }, [
+        _c("span", { staticClass: "icon" }, [
+          _c("i", { staticClass: "mdi mdi-trash-can-outline" }),
+        ]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "mdi mdi-square-edit-outline" }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "mdi mdi-eye-outline" }),
-    ])
-  },
-]
+      _vm._v(" "),
+      _c(
+        "router-link",
+        { attrs: { to: "/admin/" + _vm.source + "s/" + _vm.id + "/edit" } },
+        [
+          _c("span", { staticClass: "icon" }, [
+            _c("i", { staticClass: "mdi mdi-square-edit-outline" }),
+          ]),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        { attrs: { to: "/admin/" + _vm.source + "s/" + _vm.id } },
+        [
+          _c("span", { staticClass: "icon" }, [
+            _c("i", { staticClass: "mdi mdi-eye-outline" }),
+          ]),
+        ]
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44575,16 +44579,21 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "level-right" }, [
-        _c("p", { staticClass: "level-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "button is-success",
-              attrs: { href: "/admin/" + _vm.name + "s/new" },
-            },
-            [_vm._v("New " + _vm._s(_vm.name))]
-          ),
-        ]),
+        _c(
+          "p",
+          { staticClass: "level-item" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "button is-success",
+                attrs: { to: "/admin/" + _vm.name + "s/new" },
+              },
+              [_vm._v("New " + _vm._s(_vm.name))]
+            ),
+          ],
+          1
+        ),
       ]),
     ]),
   ])
@@ -44614,7 +44623,18 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("nav", { staticClass: "nav" }, [
-      _vm._m(0),
+      _c(
+        "div",
+        { staticClass: "navbar-brand" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "navbar-item", attrs: { to: "/" } },
+            [_c("img", { attrs: { src: __webpack_require__(/*! ../Logo-sk.png */ "./resources/js/components/admin/Logo-sk.png") } })]
+          ),
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "section",
@@ -44648,34 +44668,21 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _vm._m(1),
+      _c(
+        "section",
+        [
+          _c("h5", { staticClass: "heading" }, [_vm._v("GENERAL")]),
+          _vm._v(" "),
+          _c("router-link", { attrs: { to: "/" } }, [_vm._v("Homepage")]),
+          _vm._v(" "),
+          _c("router-link", { attrs: { to: "/logout" } }, [_vm._v("Logout")]),
+        ],
+        1
+      ),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-brand" }, [
-      _c("a", { staticClass: "navbar-item", attrs: { href: "/" } }, [
-        _c("img", { attrs: { src: __webpack_require__(/*! ../Logo-sk.png */ "./resources/js/components/admin/Logo-sk.png") } }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", [
-      _c("h5", { staticClass: "heading" }, [_vm._v("GENERAL")]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "/" } }, [_vm._v("Homepage")]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "/logout" } }, [_vm._v("Logout")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44991,34 +44998,43 @@ var render = function () {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(_vm.shorten(comment.text)))]),
                 _vm._v(" "),
-                _c("td", { staticClass: "nowrap" }, [
-                  _c(
-                    "a",
-                    { attrs: { href: "/admin/posts/" + comment.post_id } },
-                    [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(comment.post_id) +
-                          " "
-                      ),
-                      _c("strong", [_vm._v("➜")]),
-                    ]
-                  ),
-                ]),
+                _c(
+                  "td",
+                  { staticClass: "nowrap" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "/admin/posts/" + comment.post_id } },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(comment.post_id) +
+                            " "
+                        ),
+                        _c("strong", [_vm._v("➜")]),
+                      ]
+                    ),
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    { attrs: { href: "/admin/users/" + comment.user.id } },
-                    [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(comment.user.name) +
-                          "\n                    "
-                      ),
-                    ]
-                  ),
-                ]),
+                _c(
+                  "td",
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "/admin/users/" + comment.user.id } },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(comment.user.name) +
+                            "\n                    "
+                        ),
+                      ]
+                    ),
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(_vm.niceDate(comment.created_at)))]),
                 _vm._v(" "),
@@ -45279,15 +45295,23 @@ var render = function () {
                   _c("small", [_vm._v(_vm._s(_vm.shorten(post.text)))]),
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _c("a", { attrs: { href: "/admin/users/" + post.user.id } }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(post.user.name) +
-                        "\n                    "
+                _c(
+                  "td",
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "/admin/users/" + post.user.id } },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(post.user.name) +
+                            "\n                    "
+                        ),
+                      ]
                     ),
-                  ]),
-                ]),
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(_vm.niceDate(post.created_at)))]),
                 _vm._v(" "),
