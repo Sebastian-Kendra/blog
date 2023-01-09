@@ -3,9 +3,9 @@ import VueRouter from 'vue-router'
 import Dashboards from './views/DashBoards.vue'
 
 import Users from './views/users/UsersView.vue'
+import UserNew from './views/users/UserNew.vue'
 import UserSingle from './views/users/UserSingle.vue'
 import UserEdit from './views/users/UserEdit.vue'
-import UserNew from './views/users/UserNew.vue'
 
 import Posts from './views/posts/PostView.vue'
 import PostSingle from './views/posts/PostSingle.vue'
@@ -13,9 +13,9 @@ import PostEdit from './views/posts/PostEdit.vue'
 import PostNew from './views/posts/PostNew.vue'
 
 import Comments from './views/comments/CommentsView.vue'
+import CommentNew from './views/comments/CommentNew.vue'
 import CommentSingle from './views/comments/CommentSingle.vue'
 import CommentEdit from './views/comments/CommentEdit.vue'
-import CommentNew from './views/comments/CommentNew.vue'
 
 Vue.use(VueRouter)
 
@@ -31,6 +31,10 @@ export default new VueRouter({
             component: Posts,
         },
         {
+            path: '/admin/posts/new',
+            component: PostNew,
+        },
+        {
             path: '/admin/posts/:id',
             component: PostSingle,
         },
@@ -39,12 +43,12 @@ export default new VueRouter({
             component: PostEdit,
         },
         {
-            path: '/admin/posts/new',
-            component: PostNew,
-        },
-        {
             path: '/admin/comments',
             component: Comments,
+        },
+        {
+            path: '/admin/comments/new',
+            component: CommentNew,
         },
         {
             path: '/admin/comments/:id',
@@ -55,12 +59,12 @@ export default new VueRouter({
             component: CommentEdit,
         },
         {
-            path: '/admin/comments/new',
-            component: CommentNew,
-        },
-        {
             path: '/admin/users',
             component: Users,
+        },
+        {
+            path: '/admin/users/new',
+            component: UserNew,
         },
         {
             path: '/admin/users/:id',
@@ -69,10 +73,6 @@ export default new VueRouter({
         {
             path: '/admin/users/:id/edit',
             component: UserEdit,
-        },
-        {
-            path: '/admin/users/new',
-            component: UserNew,
         },
     ],
 })

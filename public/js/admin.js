@@ -2512,6 +2512,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2522,7 +2526,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      comment: {}
+      comment: {
+        user: {},
+        post: {}
+      }
     };
   },
   created: function created() {
@@ -3167,17 +3174,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _views_DashBoards_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/DashBoards.vue */ "./resources/js/components/admin/views/DashBoards.vue");
 /* harmony import */ var _views_users_UsersView_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/users/UsersView.vue */ "./resources/js/components/admin/views/users/UsersView.vue");
-/* harmony import */ var _views_users_UserSingle_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/users/UserSingle.vue */ "./resources/js/components/admin/views/users/UserSingle.vue");
-/* harmony import */ var _views_users_UserEdit_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/users/UserEdit.vue */ "./resources/js/components/admin/views/users/UserEdit.vue");
-/* harmony import */ var _views_users_UserNew_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/users/UserNew.vue */ "./resources/js/components/admin/views/users/UserNew.vue");
+/* harmony import */ var _views_users_UserNew_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/users/UserNew.vue */ "./resources/js/components/admin/views/users/UserNew.vue");
+/* harmony import */ var _views_users_UserSingle_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/users/UserSingle.vue */ "./resources/js/components/admin/views/users/UserSingle.vue");
+/* harmony import */ var _views_users_UserEdit_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/users/UserEdit.vue */ "./resources/js/components/admin/views/users/UserEdit.vue");
 /* harmony import */ var _views_posts_PostView_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/posts/PostView.vue */ "./resources/js/components/admin/views/posts/PostView.vue");
 /* harmony import */ var _views_posts_PostSingle_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/posts/PostSingle.vue */ "./resources/js/components/admin/views/posts/PostSingle.vue");
 /* harmony import */ var _views_posts_PostEdit_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/posts/PostEdit.vue */ "./resources/js/components/admin/views/posts/PostEdit.vue");
 /* harmony import */ var _views_posts_PostNew_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/posts/PostNew.vue */ "./resources/js/components/admin/views/posts/PostNew.vue");
 /* harmony import */ var _views_comments_CommentsView_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/comments/CommentsView.vue */ "./resources/js/components/admin/views/comments/CommentsView.vue");
-/* harmony import */ var _views_comments_CommentSingle_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/comments/CommentSingle.vue */ "./resources/js/components/admin/views/comments/CommentSingle.vue");
-/* harmony import */ var _views_comments_CommentEdit_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/comments/CommentEdit.vue */ "./resources/js/components/admin/views/comments/CommentEdit.vue");
-/* harmony import */ var _views_comments_CommentNew_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/comments/CommentNew.vue */ "./resources/js/components/admin/views/comments/CommentNew.vue");
+/* harmony import */ var _views_comments_CommentNew_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/comments/CommentNew.vue */ "./resources/js/components/admin/views/comments/CommentNew.vue");
+/* harmony import */ var _views_comments_CommentSingle_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/comments/CommentSingle.vue */ "./resources/js/components/admin/views/comments/CommentSingle.vue");
+/* harmony import */ var _views_comments_CommentEdit_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/comments/CommentEdit.vue */ "./resources/js/components/admin/views/comments/CommentEdit.vue");
 
 
 
@@ -3202,38 +3209,38 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_13__["default"]);
     path: '/admin/posts',
     component: _views_posts_PostView_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
+    path: '/admin/posts/new',
+    component: _views_posts_PostNew_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }, {
     path: '/admin/posts/:id',
     component: _views_posts_PostSingle_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/admin/posts/:id/edit',
     component: _views_posts_PostEdit_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
-    path: '/admin/posts/new',
-    component: _views_posts_PostNew_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }, {
     path: '/admin/comments',
     component: _views_comments_CommentsView_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
+    path: '/admin/comments/new',
+    component: _views_comments_CommentNew_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }, {
     path: '/admin/comments/:id',
-    component: _views_comments_CommentSingle_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _views_comments_CommentSingle_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
     path: '/admin/comments/:id/edit',
-    component: _views_comments_CommentEdit_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
-  }, {
-    path: '/admin/comments/new',
-    component: _views_comments_CommentNew_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+    component: _views_comments_CommentEdit_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
     path: '/admin/users',
     component: _views_users_UsersView_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }, {
+    path: '/admin/users/new',
+    component: _views_users_UserNew_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }, {
     path: '/admin/users/:id',
-    component: _views_users_UserSingle_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    component: _views_users_UserSingle_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
     path: '/admin/users/:id/edit',
-    component: _views_users_UserEdit_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }, {
-    path: '/admin/users/new',
-    component: _views_users_UserNew_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _views_users_UserEdit_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   }]
 }));
 
@@ -44872,12 +44879,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("h1", { staticClass: "title" }, [
-        _c("small", { staticClass: "has-text-grey-light" }, [
-          _vm._v("comment | "),
-        ]),
-        _vm._v("\n        " + _vm._s(_vm.comment.title) + "\n    "),
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [
         _vm._v("\n        " + _vm._s(_vm.comment.text) + "\n    "),
@@ -44885,31 +44887,51 @@ var render = function () {
       _vm._v(" "),
       _c("table", { staticClass: "meta table" }, [
         _c("tr", [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(_vm.comment.id))]),
         ]),
         _vm._v(" "),
         _c("tr", [
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
-          _c("td", [
-            _c("input", {
-              staticClass: "input",
-              attrs: { type: "text", readonly: "" },
-              domProps: { value: _vm.comment.slug },
-            }),
-          ]),
+          _c(
+            "td",
+            [
+              _c(
+                "router-link",
+                { attrs: { to: "/admin/posts/" + _vm.comment.post.id } },
+                [_vm._v(_vm._s(_vm.comment.post.title))]
+              ),
+            ],
+            1
+          ),
         ]),
         _vm._v(" "),
         _c("tr", [
-          _vm._m(2),
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "td",
+            [
+              _c(
+                "router-link",
+                { attrs: { to: "/admin/users/" + _vm.comment.user.id } },
+                [_vm._v(_vm._s(_vm.comment.user.name))]
+              ),
+            ],
+            1
+          ),
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _vm._m(4),
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(_vm.niceDate(_vm.comment.created_at)))]),
         ]),
         _vm._v(" "),
         _c("tr", [
-          _vm._m(3),
+          _vm._m(5),
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(_vm.niceDate(_vm.comment.updated_at)))]),
         ]),
@@ -44925,13 +44947,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h1", { staticClass: "title" }, [
+      _c("small", { staticClass: "has-text-grey-light" }, [_vm._v("comment")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("td", [_c("strong", [_vm._v("id:")])])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [_c("strong", [_vm._v("slug:")])])
+    return _c("td", [_c("strong", [_vm._v("Post:")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("strong", [_vm._v("User:")])])
   },
   function () {
     var _vm = this
@@ -45441,7 +45477,7 @@ var render = function () {
         _c("small", { staticClass: "has-text-grey-light" }, [
           _vm._v("user | "),
         ]),
-        _vm._v("\n        " + _vm._s(_vm.user.title) + "\n    "),
+        _vm._v("\n        " + _vm._s(_vm.user.name) + "\n    "),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [
@@ -45462,7 +45498,7 @@ var render = function () {
             _c("input", {
               staticClass: "input",
               attrs: { type: "text", readonly: "" },
-              domProps: { value: _vm.user.slug },
+              domProps: { value: _vm.user.email },
             }),
           ]),
         ]),
@@ -45496,7 +45532,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [_c("strong", [_vm._v("slug:")])])
+    return _c("td", [_c("strong", [_vm._v("email:")])])
   },
   function () {
     var _vm = this

@@ -1,8 +1,7 @@
 <template>
     <div>
         <h1 class="title">
-            <small class="has-text-grey-light">comment | </small>
-            {{ comment.title }}
+            <small class="has-text-grey-light">comment</small>
         </h1>
 
         <div class="content">
@@ -15,14 +14,19 @@
                 <td>{{ comment.id }}</td>
             </tr>
             <tr>
-                <td><strong>slug:</strong></td>
+                <td><strong>Post:</strong></td>
                 <td>
-                    <input
-                        type="text"
-                        class="input"
-                        :value="comment.slug"
-                        readonly
-                    />
+                    <router-link :to="`/admin/posts/${comment.post.id}`">{{
+                        comment.post.title
+                    }}</router-link>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>User:</strong></td>
+                <td>
+                    <router-link :to="`/admin/users/${comment.user.id}`">{{
+                        comment.user.name
+                    }}</router-link>
                 </td>
             </tr>
             <tr>
@@ -47,7 +51,10 @@ export default {
     components: { ButtonsGroup },
     data() {
         return {
-            comment: {},
+            comment: {
+                user: {},
+                post: {},
+            },
         }
     },
     created() {

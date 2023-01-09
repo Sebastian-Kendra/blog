@@ -2,7 +2,7 @@
     <div>
         <h1 class="title">
             <small class="has-text-grey-light">user | </small>
-            {{ user.title }}
+            {{ user.name }}
         </h1>
 
         <div class="content">
@@ -15,12 +15,12 @@
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
-                <td><strong>slug:</strong></td>
+                <td><strong>email:</strong></td>
                 <td>
                     <input
                         type="text"
                         class="input"
-                        :value="user.slug"
+                        :value="user.email"
                         readonly
                     />
                 </td>

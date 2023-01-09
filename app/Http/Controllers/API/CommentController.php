@@ -37,7 +37,8 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        $comment->load('user', 'post');
+        return $comment;
     }
 
     /**
