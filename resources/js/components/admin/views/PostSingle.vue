@@ -34,13 +34,17 @@
                 <td>{{ niceDate(post.updated_at) }}</td>
             </tr>
         </table>
+
+        <buttons-group source="post" :id="post.id" />
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import moment from 'moment'
+import ButtonsGroup from '../components/ButtonsGroup.vue'
 export default {
+    components: { ButtonsGroup },
     data() {
         return {
             post: {},
