@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 
 import Dashboards from './views/DashBoards.vue'
 import Posts from './views/PostView.vue'
+import PostSingle from './views/PostSingle.vue'
 import Comments from './views/CommentsView.vue'
 import Users from './views/UsersView.vue'
 
@@ -17,6 +18,10 @@ export default new VueRouter({
         {
             path: '/admin/posts',
             component: Posts,
+        },
+        {
+            path: '/admin/posts/:id',
+            component: PostSingle,
         },
         {
             path: '/admin/comments',
