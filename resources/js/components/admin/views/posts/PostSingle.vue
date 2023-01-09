@@ -42,7 +42,7 @@
 <script>
 import axios from 'axios'
 import moment from 'moment'
-import ButtonsGroup from '../components/ButtonsGroup.vue'
+import ButtonsGroup from '../../components/ButtonsGroup.vue'
 export default {
     components: { ButtonsGroup },
     data() {

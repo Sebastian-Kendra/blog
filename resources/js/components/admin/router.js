@@ -1,10 +1,15 @@
 import VueRouter from 'vue-router'
 
 import Dashboards from './views/DashBoards.vue'
-import Posts from './views/PostView.vue'
-import PostSingle from './views/PostSingle.vue'
-import Comments from './views/CommentsView.vue'
-import Users from './views/UsersView.vue'
+
+import Users from './views/users/UsersView.vue'
+
+import Posts from './views/posts/PostView.vue'
+import PostSingle from './views/posts/PostSingle.vue'
+import PostEdit from './views/posts/PostEdit.vue'
+import PostNew from './views/posts/PostNew.vue'
+
+import Comments from './views/comments/CommentsView.vue'
 
 Vue.use(VueRouter)
 
@@ -22,6 +27,14 @@ export default new VueRouter({
         {
             path: '/admin/posts/:id',
             component: PostSingle,
+        },
+        {
+            path: '/admin/posts/:id/edit',
+            component: PostEdit,
+        },
+        {
+            path: '/admin/posts/new',
+            component: PostNew,
         },
         {
             path: '/admin/comments',

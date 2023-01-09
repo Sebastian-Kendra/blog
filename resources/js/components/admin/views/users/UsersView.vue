@@ -34,9 +34,9 @@
 
 <script>
 import axios from 'axios'
-import EditLinks from '../components/EditLinks.vue'
-import TableSearch from '../components/TableSearch.vue'
-import tableMixin from '../mixins/tableMixin'
+import EditLinks from '../../components/EditLinks.vue'
+import TableSearch from '../../components/TableSearch.vue'
+import tableMixin from '../../mixins/tableMixin'
 
 export default {
     mixins: [tableMixin],

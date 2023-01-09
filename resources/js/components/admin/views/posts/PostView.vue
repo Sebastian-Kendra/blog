@@ -40,10 +40,10 @@
 </template>
 
 <script>
-import tableMixin from '../mixins/tableMixin'
-import TableSearch from '../components/TableSearch.vue'
+import tableMixin from '../../mixins/tableMixin'
+import TableSearch from '../../components/TableSearch.vue'
 import axios from 'axios'
-import EditLinks from '../components/EditLinks.vue'
+import EditLinks from '../../components/EditLinks.vue'
 export default {
     mixins: [tableMixin],
     data() {
