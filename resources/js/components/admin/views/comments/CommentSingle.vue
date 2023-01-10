@@ -58,9 +58,14 @@ export default {
         }
     },
     created() {
-        axios.get('/api/comments/' + this.$route.params.id).then((response) => {
-            this.comment = response.data
-        })
+        axios
+            .get('/api/comments/' + this.$route.params.id)
+            .then((response) => {
+                this.comment = response.data
+            })
+            .catch((error) => {
+                return this.$router.push('/admin/404')
+            })
     },
     methods: {
         niceDate(date) {

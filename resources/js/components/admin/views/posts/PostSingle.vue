@@ -51,9 +51,14 @@ export default {
         }
     },
     created() {
-        axios.get('/api/posts/' + this.$route.params.id).then((response) => {
-            this.post = response.data
-        })
+        axios
+            .get('/api/posts/' + this.$route.params.id)
+            .then((response) => {
+                this.post = response.data
+            })
+            .catch((error) => {
+                return this.$router.push('/admin/404')
+            })
     },
     methods: {
         niceDate(date) {

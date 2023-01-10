@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router'
 
 import Dashboards from './views/DashBoards.vue'
+import NotFoud from './NotFound.vue'
 
 import Users from './views/users/UsersView.vue'
 import UserNew from './views/users/UserNew.vue'
@@ -73,6 +74,14 @@ export default new VueRouter({
         {
             path: '/admin/users/:id/edit',
             component: UserEdit,
+        },
+        {
+            path: '/admin/404',
+            component: NotFoud,
+        },
+        {
+            path: '*',
+            redirect: '/admin/404',
         },
     ],
 })

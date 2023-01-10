@@ -1,11 +1,13 @@
 <template>
     <div>
-        <h1 class="title is-4">404 NOT FOUND:(</h1>
+        <h1 class="title is-4">
+            404 NOT FOUND <span>tak povediac nenašlo Še</span>
+        </h1>
 
         <div class="content">
-            ｡ﾟヽ(ﾟ´Д｀)ﾉﾟ｡
+            \(^Д^)/
             <br />
-            ๐·°(৹˃̵﹏˂̵৹)°·๐
+            (;-;)
         </div>
     </div>
 </template>

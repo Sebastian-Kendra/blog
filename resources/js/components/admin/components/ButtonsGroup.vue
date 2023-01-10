@@ -20,18 +20,21 @@
                 >
             </p>
             <p class="control">
-                <button class="button is-danger is-outlined">
-                    <span class="icon"
-                        ><i class="mdi mdi-trash-can-outline"></i
-                    ></span>
-                    <div class="text">Delete {{ source }}</div>
-                </button>
+                <a @click="deleteSource">
+                    <button class="button is-danger is-outlined">
+                        <span class="icon"
+                            ><i class="mdi mdi-trash-can-outline"></i
+                        ></span>
+                        <div class="text">Delete {{ source }}</div>
+                    </button>
+                </a>
             </p>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     props: {
         source: {
@@ -39,6 +42,17 @@ export default {
         },
         id: {
             type: Number,
+        },
+    },
+    methods: {
+        deleteSource() {
+            if (window.confirm('si Si si naozaj ista ? tak poista')) {
+                axios
+                    .delete(`/api/${this.source}s/${this.id}`)
+                    .then((response) =>
+                        this.$router.push(`/admin/${this.source}s`)
+                    )
+            }
         },
     },
 }
