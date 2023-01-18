@@ -40848,6 +40848,10 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
     transform: rotate(359deg);
   }
 }
+[v-cloak] {
+  display: none;
+}
+
 .column {
   padding: 2em 3em;
 }

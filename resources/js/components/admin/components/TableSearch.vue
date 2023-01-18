@@ -6,7 +6,9 @@
             <div class="level-left">
                 <div class="level-item">
                     <p class="subtitle is-5">
-                        <strong>{{ count }} of {{ trueCount }}</strong>
+                        <strong v-show="loaded"
+                            >{{ count }} of {{ trueCount }}</strong
+                        >
                         {{ name }}s
                     </p>
                 </div>
@@ -63,7 +65,11 @@ export default {
     data() {
         return {
             searchQuery: '',
+            loaded: false,
         }
+    },
+    mounted() {
+        this.loaded = true
     },
     methods: {
         resetQuery() {

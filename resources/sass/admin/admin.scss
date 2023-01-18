@@ -3,6 +3,10 @@
 // icons
 @import "~@mdi/font/css/materialdesignicons.css";
 
+[v-cloak] {
+    display: none;
+}
+
 .column {
     padding: 2em 3em;
 }

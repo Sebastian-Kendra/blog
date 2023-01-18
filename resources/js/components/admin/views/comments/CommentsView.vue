@@ -1,6 +1,7 @@
 <template>
     <div>
         <table-search
+            v-show="show"
             name="comment"
             :count="filtredItems.length"
             :trueCount="data.length"
@@ -55,11 +56,14 @@ export default {
     data() {
         return {
             searchColum: 'text',
+            show: false,
         }
     },
+    mounted() {},
     created() {
         axios.get('/api/comments').then((response) => {
             this.data = response.data
+            this.show = true
         })
     },
     components: {

@@ -1,6 +1,7 @@
 <template>
     <div>
         <table-search
+            v-show="show"
             name="user"
             :count="filtredItems.length"
             :trueCount="data.length"
@@ -43,11 +44,13 @@ export default {
     data() {
         return {
             searchColum: 'name',
+            show: false,
         }
     },
     created() {
         axios.get('/api/users').then((response) => {
             this.data = response.data
+            this.show = true
         })
     },
     components: {

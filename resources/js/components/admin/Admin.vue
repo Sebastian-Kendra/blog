@@ -8,17 +8,21 @@
             <the-stats />
             <router-view></router-view>
         </main>
+
+        <flash-message></flash-message>
     </div>
 </template>
 
 <script>
 import TheNavigation from './components/TheNavigations.vue'
 import TheStats from './components/TheStats.vue'
+import FlashMessage from '../FlashMessage'
 
 export default {
     components: {
         TheNavigation,
         TheStats,
+        FlashMessage,
     },
     setup() {
         return {}
