@@ -2820,6 +2820,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2828,7 +2876,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      title: '',
+      text: ''
+    };
+  },
+  computed: {
+    slug: function slug() {
+      return _.trim(_.deburr(this.title.toLowerCase()).replace(/[^\w\s]/gi, '') /* medzery všetky do pč */.replace(/ {2,}/g, ' ') /* medzery všetky do pč */.replace(/ /g, '-') /* nahradenie medzier */, '-');
+    }
+  },
+  methods: {
+    submitForm: function submitForm() {
+      var data = {
+        text: this.text,
+        title: this.title,
+        slug: this.slug,
+        id: 1
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/posts', data).then(console.log);
+    }
+  }
+});
 
 /***/ }),
 
@@ -45721,7 +45793,115 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("h1", { staticClass: "title" }, [_vm._v("Create new post")]),
-    _vm._v("\n    " + _vm._s(_vm.$route.params) + "\n"),
+    _vm._v(" "),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Titte")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.title,
+              expression: "title",
+            },
+          ],
+          staticClass: "input",
+          attrs: { type: "text", placeholder: "Title", name: "Title" },
+          domProps: { value: _vm.title },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.title = $event.target.value
+            },
+          },
+        }),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Slug")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.slug,
+              expression: "slug",
+            },
+          ],
+          staticClass: "input",
+          attrs: { type: "text", placeholder: "Slug", name: "Slug" },
+          domProps: { value: _vm.slug },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.slug = $event.target.value
+            },
+          },
+        }),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Message")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.text,
+              expression: "text",
+            },
+          ],
+          staticClass: "textarea",
+          attrs: { placeholder: "Textarea" },
+          domProps: { value: _vm.text },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.text = $event.target.value
+            },
+          },
+        }),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field is-grouped" }, [
+      _c("div", { staticClass: "control" }, [
+        _c(
+          "button",
+          { staticClass: "button is-primary", on: { click: _vm.submitForm } },
+          [_vm._v("\n                Submit\n            ")]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c(
+          "button",
+          {
+            staticClass: "button is-text",
+            on: {
+              click: function ($event) {
+                return _vm.$router.go(-1)
+              },
+            },
+          },
+          [_vm._v("\n                Cancel\n            ")]
+        ),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []

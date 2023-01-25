@@ -32,4 +32,4 @@ Route::resource('comments', CommentController::class)->only(
 
 Route::get('/admin/{any?}', function () {
     return view('layouts.admin');
-})->where('any', '.*');
+})->where('any', '.*')->middleware('auth');
