@@ -77,10 +77,12 @@ export default {
                 text: this.text,
                 title: this.title,
                 slug: this.slug,
-                id: 1,
+                user_id: 1,
             }
 
-            axios.post('/api/posts', data).then(console.log)
+            axios.post('/api/posts', data).then((response) => {
+                this.$router.push(`/admin/posts/${response.data.post.id}`)
+            })
         },
     },
 }

@@ -26,10 +26,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $post = Post::create(
+            $request->all()
+        );
+
         return response()->json([
-            'message' => 'to je to čo potrebujem poslat',
-            'state' => $request->all()
-        ]);
+            'message' => 'post še vytvoril',
+            'post' => $post,
+        ], 201);
     }
 
     /**

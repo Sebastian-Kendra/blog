@@ -2891,13 +2891,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitForm: function submitForm() {
+      var _this = this;
       var data = {
         text: this.text,
         title: this.title,
         slug: this.slug,
-        id: 1
+        user_id: 1
       };
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/posts', data).then(console.log);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/posts', data).then(function (response) {
+        _this.$router.push("/admin/posts/".concat(response.data.post.id));
+      });
     }
   }
 });
