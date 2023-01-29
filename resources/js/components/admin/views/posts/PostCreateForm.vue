@@ -86,6 +86,9 @@ export default {
         errors: {
             type: Object,
         },
+        post: {
+            type: Object,
+        },
     },
     data() {
         return {
@@ -108,6 +111,14 @@ export default {
                     .replace(/ /g, '-') /* nahradenie medzier */,
                 '-'
             )
+        },
+        post(post) {
+            ;(this.slug = post.slug),
+                (this.text = post.text),
+                (this.title = post.title)
+
+            let trix = document.querySelector('trix-editor')
+            trix.editor.insertHTML(post.text)
         },
     },
     methods: {

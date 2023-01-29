@@ -21,8 +21,8 @@
 
             <section>
                 <h5 class="heading">GENERAL</h5>
-                <router-link to="/">Homepage</router-link>
-                <router-link to="/logout">Logout</router-link>
+                <a href="/">Homepage</a>
+                <a href="/logout">Logout</a>
             </section>
         </nav>
     </div>
