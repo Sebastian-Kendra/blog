@@ -5,9 +5,7 @@
             {{ post.title }}
         </h1>
 
-        <div class="content">
-            {{ post.text }}
-        </div>
+        <div class="content" v-html="post.text"></div>
 
         <table class="meta table">
             <tr>
