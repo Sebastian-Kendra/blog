@@ -19,22 +19,24 @@
 <script>
 export default {
     props: ['source', 'id'],
-    created() {},
     methods: {
         deleteSource() {
             if (window.confirm('si Si si naozaj ista ? tak poista')) {
-                window.eventBus.emit(
-                    'flash',
-                    `${this.source} sa zmazal padol preč`
-                )
                 axios
                     .delete(`/api/${this.source}s/${this.id}`)
-                    .then((response) =>
-                        // trochu na skraslenie
+                    .then(() => {
+                        // nitifikacia
+                        window.eventBus.emit(
+                            'flash',
+                            `${this.source} sa zmazal padol preč`
+                        )
+                    })
+                    .then(() => {
+                        // až potom refresh stranky
                         setTimeout(() => {
                             this.$router.go()
-                        }, 700)
-                    )
+                        }, 2000)
+                    })
             }
         },
     },

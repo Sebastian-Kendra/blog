@@ -62,7 +62,6 @@ export default {
     components: {
         TableSearch,
         EditLinks,
-        EditLinks,
     },
 }
 </script>

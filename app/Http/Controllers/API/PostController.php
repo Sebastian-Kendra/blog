@@ -26,13 +26,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'slug' => 'required|unique:posts',
+            'text' => 'required',
+            'user_id' => 'required|integer|exists:users,id'
+        ]);
+
         $post = Post::create(
             $request->all()
         );
 
         return response()->json([
             'message' => 'post še vytvoril',
-            'post' => $post,
+            'post' => $post
         ], 201);
     }
 

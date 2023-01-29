@@ -6,11 +6,21 @@
             <div class="control">
                 <input
                     class="input"
+                    :class="{ 'is-danger': errors.title }"
                     type="text"
                     placeholder="Title"
                     name="Title"
                     v-model="title"
                 />
+                <div v-if="errors.title">
+                    <p
+                        v-for="(error, index) in errors.title"
+                        :key="index"
+                        class="help is-danger"
+                    >
+                        {{ error }}
+                    </p>
+                </div>
             </div>
         </div>
         <div class="field">
@@ -18,11 +28,21 @@
             <div class="control">
                 <input
                     class="input"
+                    :class="{ 'is-danger': errors.slug }"
                     type="text"
                     placeholder="Slug"
                     name="Slug"
                     v-model="slug"
                 />
+                <div v-if="errors.slug">
+                    <p
+                        v-for="(error, index) in errors.slug"
+                        :key="index"
+                        class="help is-danger"
+                    >
+                        {{ error }}
+                    </p>
+                </div>
             </div>
         </div>
         <div class="field">
@@ -30,12 +50,21 @@
             <div class="control">
                 <textarea
                     class="textarea"
+                    :class="{ 'is-danger': errors.text }"
                     v-model="text"
                     placeholder="Textarea"
                 ></textarea>
+                <div v-if="errors.text">
+                    <p
+                        v-for="(error, index) in errors.text"
+                        :key="index"
+                        class="help is-danger"
+                    >
+                        {{ error }}
+                    </p>
+                </div>
             </div>
         </div>
-
         <div class="field is-grouped">
             <div class="control">
                 <button class="button is-primary" @click="submitForm">
@@ -58,6 +87,8 @@ export default {
         return {
             title: '',
             text: '',
+            slug: '',
+            errors: {},
         }
     },
     computed: {
@@ -80,9 +111,14 @@ export default {
                 user_id: 1,
             }
 
-            axios.post('/api/posts', data).then((response) => {
-                this.$router.push(`/admin/posts/${response.data.post.id}`)
-            })
+            axios
+                .post('/api/posts', data)
+                .then((response) => {
+                    this.$router.push(`/admin/posts/${response.data.post.id}`)
+                })
+                .catch((errors) => {
+                    this.errors = errors.response.data.errors
+                })
         },
     },
 }

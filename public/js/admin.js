@@ -2291,19 +2291,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['source', 'id'],
-  created: function created() {},
   methods: {
     deleteSource: function deleteSource() {
       var _this = this;
       if (window.confirm('si Si si naozaj ista ? tak poista')) {
-        window.eventBus.emit('flash', "".concat(this.source, " sa zmazal padol pre\u010D"));
-        axios["delete"]("/api/".concat(this.source, "s/").concat(this.id)).then(function (response) {
-          return (
-            // trochu na skraslenie
-            setTimeout(function () {
-              _this.$router.go();
-            }, 700)
-          );
+        axios["delete"]("/api/".concat(this.source, "s/").concat(this.id)).then(function () {
+          // nitifikacia
+          window.eventBus.emit('flash', "".concat(_this.source, " sa zmazal padol pre\u010D"));
+        }).then(function () {
+          // až potom refresh stranky
+          setTimeout(function () {
+            _this.$router.go();
+          }, 2000);
         });
       }
     }
@@ -2875,13 +2874,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       title: '',
-      text: ''
+      text: '',
+      slug: '',
+      errors: {}
     };
   },
   computed: {
@@ -2900,6 +2930,8 @@ __webpack_require__.r(__webpack_exports__);
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/posts', data).then(function (response) {
         _this.$router.push("/admin/posts/".concat(response.data.post.id));
+      })["catch"](function (errors) {
+        _this.errors = errors.response.data.errors;
       });
     }
   }
@@ -3010,7 +3042,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_EditLinks_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/EditLinks.vue */ "./resources/js/components/admin/components/EditLinks.vue");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 //
 //
 //
@@ -3073,10 +3104,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _this.show = true;
     });
   },
-  components: _defineProperty({
+  components: {
     TableSearch: _components_TableSearch_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     EditLinks: _components_EditLinks_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }, "EditLinks", _components_EditLinks_vue__WEBPACK_IMPORTED_MODULE_3__["default"])
+  }
 });
 
 /***/ }),
@@ -45811,6 +45842,7 @@ var render = function () {
             },
           ],
           staticClass: "input",
+          class: { "is-danger": _vm.errors.title },
           attrs: { type: "text", placeholder: "Title", name: "Title" },
           domProps: { value: _vm.title },
           on: {
@@ -45822,6 +45854,22 @@ var render = function () {
             },
           },
         }),
+        _vm._v(" "),
+        _vm.errors.title
+          ? _c(
+              "div",
+              _vm._l(_vm.errors.title, function (error, index) {
+                return _c("p", { key: index, staticClass: "help is-danger" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(error) +
+                      "\n                "
+                  ),
+                ])
+              }),
+              0
+            )
+          : _vm._e(),
       ]),
     ]),
     _vm._v(" "),
@@ -45839,6 +45887,7 @@ var render = function () {
             },
           ],
           staticClass: "input",
+          class: { "is-danger": _vm.errors.slug },
           attrs: { type: "text", placeholder: "Slug", name: "Slug" },
           domProps: { value: _vm.slug },
           on: {
@@ -45850,6 +45899,22 @@ var render = function () {
             },
           },
         }),
+        _vm._v(" "),
+        _vm.errors.slug
+          ? _c(
+              "div",
+              _vm._l(_vm.errors.slug, function (error, index) {
+                return _c("p", { key: index, staticClass: "help is-danger" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(error) +
+                      "\n                "
+                  ),
+                ])
+              }),
+              0
+            )
+          : _vm._e(),
       ]),
     ]),
     _vm._v(" "),
@@ -45867,6 +45932,7 @@ var render = function () {
             },
           ],
           staticClass: "textarea",
+          class: { "is-danger": _vm.errors.text },
           attrs: { placeholder: "Textarea" },
           domProps: { value: _vm.text },
           on: {
@@ -45878,6 +45944,22 @@ var render = function () {
             },
           },
         }),
+        _vm._v(" "),
+        _vm.errors.text
+          ? _c(
+              "div",
+              _vm._l(_vm.errors.text, function (error, index) {
+                return _c("p", { key: index, staticClass: "help is-danger" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(error) +
+                      "\n                "
+                  ),
+                ])
+              }),
+              0
+            )
+          : _vm._e(),
       ]),
     ]),
     _vm._v(" "),
