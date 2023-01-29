@@ -91,10 +91,10 @@ export default {
             errors: {},
         }
     },
-    computed: {
-        slug() {
-            return _.trim(
-                _.deburr(this.title.toLowerCase())
+    watch: {
+        title(value) {
+            this.slug = _.trim(
+                _.deburr(value.toLowerCase())
                     .replace(/[^\w\s]/gi, '') /* medzery všetky do pč */
                     .replace(/ {2,}/g, ' ') /* medzery všetky do pč */
                     .replace(/ /g, '-') /* nahradenie medzier */,

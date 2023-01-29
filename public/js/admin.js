@@ -2914,9 +2914,9 @@ __webpack_require__.r(__webpack_exports__);
       errors: {}
     };
   },
-  computed: {
-    slug: function slug() {
-      return _.trim(_.deburr(this.title.toLowerCase()).replace(/[^\w\s]/gi, '') /* medzery všetky do pč */.replace(/ {2,}/g, ' ') /* medzery všetky do pč */.replace(/ /g, '-') /* nahradenie medzier */, '-');
+  watch: {
+    title: function title(value) {
+      this.slug = _.trim(_.deburr(value.toLowerCase()).replace(/[^\w\s]/gi, '') /* medzery všetky do pč */.replace(/ {2,}/g, ' ') /* medzery všetky do pč */.replace(/ /g, '-') /* nahradenie medzier */, '-');
     }
   },
   methods: {
