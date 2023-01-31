@@ -49,9 +49,7 @@ export default {
             if (window.confirm('si Si si naozaj ista ? tak poista')) {
                 axios
                     .delete(`/api/${this.source}s/${this.id}`)
-                    .then((response) =>
-                        this.$router.push(`/admin/${this.source}s`)
-                    )
+                    .then(() => this.$router.push(`/admin/${this.source}s`))
             }
         },
     },

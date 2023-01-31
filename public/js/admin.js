@@ -2249,7 +2249,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteSource: function deleteSource() {
       var _this = this;
       if (window.confirm('si Si si naozaj ista ? tak poista')) {
-        axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/".concat(this.source, "s/").concat(this.id)).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/".concat(this.source, "s/").concat(this.id)).then(function () {
           return _this.$router.push("/admin/".concat(_this.source, "s"));
         });
       }
