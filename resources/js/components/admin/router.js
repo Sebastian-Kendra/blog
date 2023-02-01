@@ -4,7 +4,6 @@ import Dashboards from './views/DashBoards.vue'
 import NotFoud from './NotFound.vue'
 
 import Users from './views/users/UsersView.vue'
-import UserNew from './views/users/UserNew.vue'
 import UserSingle from './views/users/UserSingle.vue'
 import UserEdit from './views/users/UserEdit.vue'
 
@@ -62,10 +61,6 @@ export default new VueRouter({
         {
             path: '/admin/users',
             component: Users,
-        },
-        {
-            path: '/admin/users/new',
-            component: UserNew,
         },
         {
             path: '/admin/users/:id',
