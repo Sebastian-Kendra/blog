@@ -2498,7 +2498,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      posts: '',
+      comments: '',
+      users: ''
+    };
+  },
+  created: function created() {
+    var _this = this;
+    console.log(this.posts);
+    axios.get('/api/posts').then(function (response) {
+      _this.posts = response.data.length;
+    });
+  },
+  watch: {
+    posts: function posts(_posts) {}
+  }
+});
 
 /***/ }),
 
@@ -45536,46 +45554,58 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("nav", { staticClass: "level is-mobile" }, [
+      _c("div", { staticClass: "level-item has-text-centered box" }, [
+        _c("div", [
+          _c("p", { staticClass: "heading" }, [_vm._v("Posts")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.posts))]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("nav", { staticClass: "level is-mobile" }, [
-        _c("div", { staticClass: "level-item has-text-centered box" }, [
-          _c("div", [
-            _c("p", { staticClass: "heading" }, [_vm._v("Tweets")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "title" }, [_vm._v("3,456")]),
-          ]),
-        ]),
+    return _c("div", { staticClass: "level-item has-text-centered box" }, [
+      _c("div", [
+        _c("p", { staticClass: "heading" }, [_vm._v("Comments")]),
         _vm._v(" "),
-        _c("div", { staticClass: "level-item has-text-centered box" }, [
-          _c("div", [
-            _c("p", { staticClass: "heading" }, [_vm._v("Following")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "title" }, [_vm._v("123")]),
-          ]),
-        ]),
+        _c("p", { staticClass: "title" }, [_vm._v("123")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "level-item has-text-centered box" }, [
+      _c("div", [
+        _c("p", { staticClass: "heading" }, [_vm._v("Users")]),
         _vm._v(" "),
-        _c("div", { staticClass: "level-item has-text-centered box" }, [
-          _c("div", [
-            _c("p", { staticClass: "heading" }, [_vm._v("Followers")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "title" }, [_vm._v("456K")]),
-          ]),
-        ]),
+        _c("p", { staticClass: "title" }, [_vm._v("456K")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "level-item has-text-centered box" }, [
+      _c("div", [
+        _c("p", { staticClass: "heading" }, [_vm._v("Likes")]),
         _vm._v(" "),
-        _c("div", { staticClass: "level-item has-text-centered box" }, [
-          _c("div", [
-            _c("p", { staticClass: "heading" }, [_vm._v("Likes")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "title" }, [_vm._v("789")]),
-          ]),
-        ]),
+        _c("p", { staticClass: "title" }, [_vm._v("789")]),
       ]),
     ])
   },
