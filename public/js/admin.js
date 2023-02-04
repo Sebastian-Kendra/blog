@@ -3213,6 +3213,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -46451,8 +46458,19 @@ var render = function () {
   return _c("div", [
     _c("h1", { staticClass: "title" }, [_vm._v("Edit user")]),
     _vm._v(
-      "\n    " + _vm._s(_vm.$route.params) + "\n    " + _vm._s(_vm.user) + "\n"
+      "\n    " +
+        _vm._s(_vm.$route.params) +
+        "\n    " +
+        _vm._s(_vm.user) +
+        "\n\n    "
     ),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("User")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c("h5", { staticClass: "input" }, [_vm._v(_vm._s(_vm.user.name))]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []

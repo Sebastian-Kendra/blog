@@ -3,6 +3,13 @@
         <h1 class="title">Edit user</h1>
         {{ $route.params }}
         {{ user }}
+
+        <div class="field">
+            <label class="label">User</label>
+            <div class="control">
+                <h5 class="input">{{ user.name }}</h5>
+            </div>
+        </div>
     </div>
 </template>
 
