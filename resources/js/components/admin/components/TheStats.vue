@@ -3,19 +3,19 @@
         <nav class="level is-mobile">
             <div class="level-item has-text-centered box">
                 <div>
-                    <p class="heading">Tweets</p>
-                    <p class="title">3,456</p>
+                    <p class="heading">Posts</p>
+                    <p class="title">{{ posts }}</p>
                 </div>
             </div>
             <div class="level-item has-text-centered box">
                 <div>
-                    <p class="heading">Following</p>
+                    <p class="heading">Comments</p>
                     <p class="title">123</p>
                 </div>
             </div>
             <div class="level-item has-text-centered box">
                 <div>
-                    <p class="heading">Followers</p>
+                    <p class="heading">Users</p>
                     <p class="title">456K</p>
                 </div>
             </div>
@@ -30,7 +30,24 @@
 </template>
 
 <script>
-export default {}
+export default {
+    data() {
+        return {
+            posts: '',
+            comments: '',
+            users: '',
+        }
+    },
+    created() {
+        console.log(this.posts)
+        axios.get('/api/posts').then((response) => {
+            this.posts = response.data.length
+        })
+    },
+    watch: {
+        posts(posts) {},
+    },
+}
 </script>
 
 <style lang="scss" scoped>
