@@ -127,9 +127,10 @@ export default {
                 text: this.text,
                 title: this.title,
                 slug: this.slug,
-                user_id: 1,
+                user_id: 2,
             }
 
+            window.eventBus.emit('change-stats')
             this.$emit('post-form-submited', data)
         },
     },

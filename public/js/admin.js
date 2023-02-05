@@ -2501,20 +2501,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      posts: '',
-      comments: '',
+      newPosts: '',
+      oldPosts: '',
+      newComments: '',
+      oldComments: '',
       users: ''
     };
   },
   created: function created() {
     var _this = this;
-    console.log(this.posts);
+    this.reloadNum;
+    this.changeNum;
     axios.get('/api/posts').then(function (response) {
-      _this.posts = response.data.length;
+      _this.oldPosts = response.data.length;
+    });
+    axios.get('/api/comments').then(function (response) {
+      _this.oldComments = response.data.length;
     });
   },
-  watch: {
-    posts: function posts(_posts) {}
+  methods: {
+    changeNum: function changeNum() {
+      this.newLength = this.oldPosts;
+    },
+    reloadNum: function reloadNum() {
+      window.eventBus.on('change-stats', function () {
+        console.log('stane sa vobec dačo ?');
+        /* axios.get('/api/posts').then((response) => {
+            this.oldPosts = this.newPosts = response.data.length
+        })
+        axios.get('/api/comments').then((response) => {
+            this.comments = response.data.length
+        }) */
+      });
+    }
   }
 });
 
@@ -2926,8 +2945,9 @@ __webpack_require__.r(__webpack_exports__);
         text: this.text,
         title: this.title,
         slug: this.slug,
-        user_id: 1
+        user_id: 2
       };
+      window.eventBus.emit('change-stats');
       this.$emit('post-form-submited', data);
     }
   }
@@ -45560,31 +45580,25 @@ var render = function () {
         _c("div", [
           _c("p", { staticClass: "heading" }, [_vm._v("Posts")]),
           _vm._v(" "),
-          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.posts))]),
+          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.oldPosts))]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "level-item has-text-centered box" }, [
+        _c("div", [
+          _c("p", { staticClass: "heading" }, [_vm._v("Comments")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.oldComments))]),
         ]),
       ]),
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
       _vm._m(1),
-      _vm._v(" "),
-      _vm._m(2),
     ]),
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "level-item has-text-centered box" }, [
-      _c("div", [
-        _c("p", { staticClass: "heading" }, [_vm._v("Comments")]),
-        _vm._v(" "),
-        _c("p", { staticClass: "title" }, [_vm._v("123")]),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

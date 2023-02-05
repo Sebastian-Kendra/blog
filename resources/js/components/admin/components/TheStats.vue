@@ -4,13 +4,13 @@
             <div class="level-item has-text-centered box">
                 <div>
                     <p class="heading">Posts</p>
-                    <p class="title">{{ posts }}</p>
+                    <p class="title">{{ oldPosts }}</p>
                 </div>
             </div>
             <div class="level-item has-text-centered box">
                 <div>
                     <p class="heading">Comments</p>
-                    <p class="title">123</p>
+                    <p class="title">{{ oldComments }}</p>
                 </div>
             </div>
             <div class="level-item has-text-centered box">
@@ -33,19 +33,38 @@
 export default {
     data() {
         return {
-            posts: '',
-            comments: '',
+            newPosts: '',
+            oldPosts: '',
+            newComments: '',
+            oldComments: '',
             users: '',
         }
     },
     created() {
-        console.log(this.posts)
+        this.reloadNum
+        this.changeNum
         axios.get('/api/posts').then((response) => {
-            this.posts = response.data.length
+            this.oldPosts = response.data.length
+        })
+        axios.get('/api/comments').then((response) => {
+            this.oldComments = response.data.length
         })
     },
-    watch: {
-        posts(posts) {},
+    methods: {
+        changeNum() {
+            this.newLength = this.oldPosts
+        },
+        reloadNum() {
+            window.eventBus.on('change-stats', () => {
+                console.log('stane sa vobec dačo ?')
+                /* axios.get('/api/posts').then((response) => {
+                    this.oldPosts = this.newPosts = response.data.length
+                })
+                axios.get('/api/comments').then((response) => {
+                    this.comments = response.data.length
+                }) */
+            })
+        },
     },
 }
 </script>
