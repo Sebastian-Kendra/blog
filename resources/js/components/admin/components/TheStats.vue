@@ -39,7 +39,6 @@ export default {
         }
     },
     created() {
-        console.log(this.posts)
         axios.get('/api/posts').then((response) => {
             this.posts = response.data.length
         })

@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="field">
-            <label class="label">Slug</label>
+            <label class="label" @click="consol">Slug</label>
             <div class="control">
                 <input
                     class="input"
@@ -94,7 +94,7 @@ export default {
         return {
             title: '',
             text: '',
-            slug: '',
+            //slug: '', // To bolo pri watcherovy
         }
     },
     mounted() {
@@ -102,16 +102,31 @@ export default {
             this.text = document.getElementById('x').value
         })
     },
-    watch: {
-        title(value) {
-            this.slug = _.trim(
-                _.deburr(value.toLowerCase())
-                    .replace(/[^\w\s]/gi, '') /* medzery všetky do pč */
-                    .replace(/ {2,}/g, ' ') /* medzery všetky do pč */
-                    .replace(/ /g, '-') /* nahradenie medzier */,
-                '-'
-            )
+    computed: {
+        slug: {
+            // getter
+
+            get() {
+                let value = _.trim(
+                    _.deburr(this.title.toLowerCase())
+                        .replace(/[^\w\s]/gi, '') /// medzery všetky do pč
+                        .replace(/ {2,}/g, ' ') /// medzery všetky do pč
+                        .replace(/ /g, '-'), /// nahradenie medzier ,
+                    '-'
+                )
+                return value
+            },
+            // setter
+            set(newValue, oldValue) {
+                if (!this.errors.slug) {
+                    console.log('nasiel sa err')
+                }
+                // Note: we are using destructuring assignment syntax here.
+                return this.slug
+            },
         },
+    },
+    watch: {
         post(post) {
             ;(this.slug = post.slug),
                 (this.text = post.text),
@@ -122,6 +137,9 @@ export default {
         },
     },
     methods: {
+        consol() {
+            console.log(this.slug)
+        },
         submitForm() {
             let data = {
                 text: this.text,

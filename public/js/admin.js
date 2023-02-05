@@ -2508,7 +2508,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     var _this = this;
-    console.log(this.posts);
     axios.get('/api/posts').then(function (response) {
       _this.posts = response.data.length;
     });
@@ -2899,8 +2898,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       title: '',
-      text: '',
-      slug: ''
+      text: ''
+      //slug: '', // To bolo pri watcherovy
     };
   },
   mounted: function mounted() {
@@ -2909,10 +2908,28 @@ __webpack_require__.r(__webpack_exports__);
       _this.text = document.getElementById('x').value;
     });
   },
+  computed: {
+    slug: {
+      // getter
+      get: function get() {
+        var value = _.trim(_.deburr(this.title.toLowerCase()).replace(/[^\w\s]/gi, '') /// medzery všetky do pč
+        .replace(/ {2,}/g, ' ') /// medzery všetky do pč
+        .replace(/ /g, '-'),
+        /// nahradenie medzier ,
+        '-');
+        return value;
+      },
+      // setter
+      set: function set(newValue, oldValue) {
+        if (!this.errors.slug) {
+          console.log('nasiel sa err');
+        }
+        // Note: we are using destructuring assignment syntax here.
+        return this.slug;
+      }
+    }
+  },
   watch: {
-    title: function title(value) {
-      this.slug = _.trim(_.deburr(value.toLowerCase()).replace(/[^\w\s]/gi, '') /* medzery všetky do pč */.replace(/ {2,}/g, ' ') /* medzery všetky do pč */.replace(/ /g, '-') /* nahradenie medzier */, '-');
-    },
     post: function post(_post) {
       ;
       this.slug = _post.slug, this.text = _post.text, this.title = _post.title;
@@ -2921,6 +2938,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    consol: function consol() {
+      console.log(this.slug);
+    },
     submitForm: function submitForm() {
       var data = {
         text: this.text,
@@ -3603,7 +3623,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.notification[data-v-3cea7a62] {\r\n    font-size: 1.2rem;\r\n    position: fixed;\r\n    right: 2em;\r\n    bottom: 2em;\n}\n.fade-enter-active[data-v-3cea7a62],\r\n.fade-leave-active[data-v-3cea7a62] {\r\n    transition: opacity 0.35s;\n}\n.fade-enter[data-v-3cea7a62],\r\n.fade-leave-to[data-v-3cea7a62] {\r\n    opacity: 0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.notification[data-v-3cea7a62] {\n    font-size: 1.2rem;\n    position: fixed;\n    right: 2em;\n    bottom: 2em;\n}\n.fade-enter-active[data-v-3cea7a62],\n.fade-leave-active[data-v-3cea7a62] {\n    transition: opacity 0.35s;\n}\n.fade-enter[data-v-3cea7a62],\n.fade-leave-to[data-v-3cea7a62] {\n    opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -46053,7 +46073,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("Slug")]),
+      _c("label", { staticClass: "label", on: { click: _vm.consol } }, [
+        _vm._v("Slug"),
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "control" }, [
         _c("input", {
