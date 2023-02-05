@@ -2919,7 +2919,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       title: '',
       text: '',
-      slug: ''
+      slug: '' // To bolo pri watcherovy
     };
   },
   mounted: function mounted() {
@@ -2928,10 +2928,29 @@ __webpack_require__.r(__webpack_exports__);
       _this.text = document.getElementById('x').value;
     });
   },
+  computed: {
+    slugs: {
+      // getter
+      get: function get() {
+        var value = _.trim(_.deburr(this.title.toLowerCase()).replace(/[^\w\s]/gi, '') /// medzery všetky do pč
+        .replace(/ {2,}/g, ' ') /// medzery všetky do pč
+        .replace(/ /g, '-'),
+        /// nahradenie medzier ,
+        '-');
+        return this.slug = value;
+      },
+      // setter
+      set: function set(value) {
+        var slug = _.trim(_.deburr(this.title.toLowerCase()).replace(/[^\w\s]/gi, '') /// medzery všetky do pč
+        .replace(/ {2,}/g, ' ') /// medzery všetky do pč
+        .replace(/ /g, '-'),
+        /// nahradenie medzier ,
+        '-');
+        return this.slug = slug + value;
+      }
+    }
+  },
   watch: {
-    title: function title(value) {
-      this.slug = _.trim(_.deburr(value.toLowerCase()).replace(/[^\w\s]/gi, '') /* medzery všetky do pč */.replace(/ {2,}/g, ' ') /* medzery všetky do pč */.replace(/ /g, '-') /* nahradenie medzier */, '-');
-    },
     post: function post(_post) {
       ;
       this.slug = _post.slug, this.text = _post.text, this.title = _post.title;
@@ -2940,6 +2959,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    consol: function consol() {
+      console.log(this.slug);
+    },
     submitForm: function submitForm() {
       var data = {
         text: this.text,
@@ -3243,6 +3265,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -46060,7 +46089,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("Slug")]),
+      _c("label", { staticClass: "label", on: { click: _vm.consol } }, [
+        _vm._v("Slug"),
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "control" }, [
         _c("input", {
@@ -46495,8 +46526,19 @@ var render = function () {
   return _c("div", [
     _c("h1", { staticClass: "title" }, [_vm._v("Edit user")]),
     _vm._v(
-      "\n    " + _vm._s(_vm.$route.params) + "\n    " + _vm._s(_vm.user) + "\n"
+      "\n    " +
+        _vm._s(_vm.$route.params) +
+        "\n    " +
+        _vm._s(_vm.user) +
+        "\n\n    "
     ),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("User")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c("h5", { staticClass: "input" }, [_vm._v(_vm._s(_vm.user.name))]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []

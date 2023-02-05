@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="field">
-            <label class="label">Slug</label>
+            <label class="label" @click="consol">Slug</label>
             <div class="control">
                 <input
                     class="input"
@@ -94,7 +94,7 @@ export default {
         return {
             title: '',
             text: '',
-            slug: '',
+            slug: '', // To bolo pri watcherovy
         }
     },
     mounted() {
@@ -102,16 +102,33 @@ export default {
             this.text = document.getElementById('x').value
         })
     },
-    watch: {
-        title(value) {
-            this.slug = _.trim(
-                _.deburr(value.toLowerCase())
-                    .replace(/[^\w\s]/gi, '') /* medzery všetky do pč */
-                    .replace(/ {2,}/g, ' ') /* medzery všetky do pč */
-                    .replace(/ /g, '-') /* nahradenie medzier */,
-                '-'
-            )
+    computed: {
+        slugs: {
+            // getter
+            get: function () {
+                let value = _.trim(
+                    _.deburr(this.title.toLowerCase())
+                        .replace(/[^\w\s]/gi, '') /// medzery všetky do pč
+                        .replace(/ {2,}/g, ' ') /// medzery všetky do pč
+                        .replace(/ /g, '-'), /// nahradenie medzier ,
+                    '-'
+                )
+                return (this.slug = value)
+            },
+            // setter
+            set: function (value) {
+                let slug = _.trim(
+                    _.deburr(this.title.toLowerCase())
+                        .replace(/[^\w\s]/gi, '') /// medzery všetky do pč
+                        .replace(/ {2,}/g, ' ') /// medzery všetky do pč
+                        .replace(/ /g, '-'), /// nahradenie medzier ,
+                    '-'
+                )
+                return (this.slug = slug + value)
+            },
         },
+    },
+    watch: {
         post(post) {
             ;(this.slug = post.slug),
                 (this.text = post.text),
@@ -122,6 +139,9 @@ export default {
         },
     },
     methods: {
+        consol() {
+            console.log(this.slug)
+        },
         submitForm() {
             let data = {
                 text: this.text,
