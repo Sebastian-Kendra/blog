@@ -94,7 +94,7 @@ export default {
         return {
             title: '',
             text: '',
-            //slug: '', // To bolo pri watcherovy
+            slug: '', // To bolo pri watcherovy
         }
     },
     mounted() {
@@ -103,10 +103,9 @@ export default {
         })
     },
     computed: {
-        slug: {
+        slugs: {
             // getter
-
-            get() {
+            get: function () {
                 let value = _.trim(
                     _.deburr(this.title.toLowerCase())
                         .replace(/[^\w\s]/gi, '') /// medzery všetky do pč
@@ -114,15 +113,18 @@ export default {
                         .replace(/ /g, '-'), /// nahradenie medzier ,
                     '-'
                 )
-                return value
+                return (this.slug = value)
             },
             // setter
-            set(newValue, oldValue) {
-                if (!this.errors.slug) {
-                    console.log('nasiel sa err')
-                }
-                // Note: we are using destructuring assignment syntax here.
-                return this.slug
+            set: function (value) {
+                let slug = _.trim(
+                    _.deburr(this.title.toLowerCase())
+                        .replace(/[^\w\s]/gi, '') /// medzery všetky do pč
+                        .replace(/ {2,}/g, ' ') /// medzery všetky do pč
+                        .replace(/ /g, '-'), /// nahradenie medzier ,
+                    '-'
+                )
+                return (this.slug = slug + value)
             },
         },
     },

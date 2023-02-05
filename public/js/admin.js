@@ -2898,8 +2898,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       title: '',
-      text: ''
-      //slug: '', // To bolo pri watcherovy
+      text: '',
+      slug: '' // To bolo pri watcherovy
     };
   },
   mounted: function mounted() {
@@ -2909,7 +2909,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   computed: {
-    slug: {
+    slugs: {
       // getter
       get: function get() {
         var value = _.trim(_.deburr(this.title.toLowerCase()).replace(/[^\w\s]/gi, '') /// medzery všetky do pč
@@ -2917,15 +2917,16 @@ __webpack_require__.r(__webpack_exports__);
         .replace(/ /g, '-'),
         /// nahradenie medzier ,
         '-');
-        return value;
+        return this.slug = value;
       },
       // setter
-      set: function set(newValue, oldValue) {
-        if (!this.errors.slug) {
-          console.log('nasiel sa err');
-        }
-        // Note: we are using destructuring assignment syntax here.
-        return this.slug;
+      set: function set(value) {
+        var slug = _.trim(_.deburr(this.title.toLowerCase()).replace(/[^\w\s]/gi, '') /// medzery všetky do pč
+        .replace(/ {2,}/g, ' ') /// medzery všetky do pč
+        .replace(/ /g, '-'),
+        /// nahradenie medzier ,
+        '-');
+        return this.slug = slug + value;
       }
     }
   },
