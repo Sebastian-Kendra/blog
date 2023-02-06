@@ -25,7 +25,10 @@ export default {
             axios
                 .post('/api/comments', data)
                 .then((response) => {
-                    this.$router.push(`/admin/posts/${response.data.post.id}`)
+                    /* this.comment = response.data */
+                    this.$router.push(
+                        `/admin/comments/${response.data.comment.id}`
+                    )
                 })
                 .catch((errors) => {
                     this.errors = errors.response.data.errors

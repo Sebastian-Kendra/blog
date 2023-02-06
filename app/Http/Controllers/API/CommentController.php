@@ -26,7 +26,23 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'postId' => 'required',
+            'text' => 'required',
+        ]);
+
+        $comment = Comment::create($request->all());
+
+        return response()->json([
+            'sprava' => 'comment created',
+            'comment' => $comment
+        ], 201);
+
+        /* 
+        return response()->json([
+            'sprava' => 'to čo si chcel',
+            'tvoje data' => $request->all()
+        ]); */
     }
 
     /**

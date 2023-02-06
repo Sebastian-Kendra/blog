@@ -2649,29 +2649,30 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      post: ''
+      postId: '',
+      text: ''
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    var _this = this;
+    document.addEventListener('trix-change', function () {
+      _this.text = document.getElementById('x').value;
+    });
+  },
   watch: {
     comment: function comment(_comment) {
-      /* 
-      ;(this.slug = post.slug),
-          (this.text = post.text),
-          (this.title = post.title) */
-
+      ;
+      this.text = _comment.text, this.post = _comment.post;
       var trix = document.querySelector('trix-editor');
-      trix.editor.insertHTML(post.text);
+      trix.editor.insertHTML(_comment.text);
     }
   },
   methods: {
     submitForm: function submitForm() {
       var data = {
-        /* 
         text: this.text,
-        title: this.title,
-        slug: this.slug,
-        user_id: 1, */
+        post_id: +this.postId,
+        user_id: 1
       };
       this.$emit('comment-form-submited', data);
     }
@@ -2691,6 +2692,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _CommentCreateForm_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CommentCreateForm.vue */ "./resources/js/components/admin/views/comments/CommentCreateForm.vue");
+//
+//
+//
 //
 //
 //
@@ -2700,9 +2705,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    CommentCreateForm: _CommentCreateForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
+      errors: {},
       comment: {}
     };
   },
@@ -2711,6 +2721,17 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/comments/' + this.$route.params.id).then(function (response) {
       _this.comment = response.data;
     });
+  },
+  methods: {
+    submitForm: function submitForm(data) {
+      var _this2 = this;
+      axios.post('/api/comments', data).then(function (response) {
+        _this2.comment = response.data;
+        _this2.$router.push("/admin/posts/".concat(response.data.post.id));
+      })["catch"](function (errors) {
+        _this2.errors = errors.response.data.errors;
+      });
+    }
   }
 });
 
@@ -2756,7 +2777,8 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm(data) {
       var _this = this;
       axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/comments', data).then(function (response) {
-        _this.$router.push("/admin/posts/".concat(response.data.post.id));
+        /* this.comment = response.data */
+        _this.$router.push("/admin/comments/".concat(response.data.comment.id));
       })["catch"](function (errors) {
         _this.errors = errors.response.data.errors;
       });
@@ -3789,7 +3811,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.notification[data-v-3cea7a62] {\r\n    font-size: 1.2rem;\r\n    position: fixed;\r\n    right: 2em;\r\n    bottom: 2em;\n}\n.fade-enter-active[data-v-3cea7a62],\r\n.fade-leave-active[data-v-3cea7a62] {\r\n    transition: opacity 0.35s;\n}\n.fade-enter[data-v-3cea7a62],\r\n.fade-leave-to[data-v-3cea7a62] {\r\n    opacity: 0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.notification[data-v-3cea7a62] {\n    font-size: 1.2rem;\n    position: fixed;\n    right: 2em;\n    bottom: 2em;\n}\n.fade-enter-active[data-v-3cea7a62],\n.fade-leave-active[data-v-3cea7a62] {\n    transition: opacity 0.35s;\n}\n.fade-enter[data-v-3cea7a62],\n.fade-leave-to[data-v-3cea7a62] {\n    opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -46001,7 +46023,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("For Post")]),
+      _c("label", { staticClass: "label" }, [_vm._v("For Post (id)")]),
       _vm._v(" "),
       _c("div", { staticClass: "control" }, [
         _c("input", {
@@ -46009,28 +46031,28 @@ var render = function () {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.post,
-              expression: "post",
+              value: _vm.postId,
+              expression: "postId",
             },
           ],
           staticClass: "input",
-          class: { "is-danger": _vm.errors.title },
+          class: { "is-danger": _vm.errors.postId },
           attrs: { type: "text", placeholder: "Post", name: "post-title" },
-          domProps: { value: _vm.post },
+          domProps: { value: _vm.postId },
           on: {
             input: function ($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.post = $event.target.value
+              _vm.postId = $event.target.value
             },
           },
         }),
         _vm._v(" "),
-        _vm.errors.title
+        _vm.errors.postId
           ? _c(
               "div",
-              _vm._l(_vm.errors.title, function (error, index) {
+              _vm._l(_vm.errors.postId, function (error, index) {
                 return _c("p", { key: index, staticClass: "help is-danger" }, [
                   _vm._v(
                     "\n                    " +
@@ -46135,16 +46157,18 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", { staticClass: "title" }, [_vm._v("Edit comment")]),
-    _vm._v(
-      "\n    " +
-        _vm._s(_vm.$route.params) +
-        "\n    " +
-        _vm._s(_vm.comment) +
-        "\n"
-    ),
-  ])
+  return _c(
+    "div",
+    [
+      _c("h1", { staticClass: "title" }, [_vm._v("Edit comment")]),
+      _vm._v(" "),
+      _c("comment-create-form", {
+        attrs: { errors: _vm.errors, comment: _vm.comment },
+        on: { "comment-form-submited": _vm.submitForm },
+      }),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

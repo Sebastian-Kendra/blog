@@ -1,19 +1,19 @@
 <template>
     <div>
         <div class="field">
-            <label class="label">For Post</label>
+            <label class="label">For Post (id)</label>
             <div class="control">
                 <input
                     class="input"
-                    :class="{ 'is-danger': errors.title }"
+                    :class="{ 'is-danger': errors.postId }"
                     type="text"
                     placeholder="Post"
                     name="post-title"
-                    v-model="post"
+                    v-model="postId"
                 />
-                <div v-if="errors.title">
+                <div v-if="errors.postId">
                     <p
-                        v-for="(error, index) in errors.title"
+                        v-for="(error, index) in errors.postId"
                         :key="index"
                         class="help is-danger"
                     >
@@ -70,29 +70,29 @@ export default {
     },
     data() {
         return {
-            post: '',
+            postId: '',
+            text: '',
         }
     },
-    mounted() {},
+    mounted() {
+        document.addEventListener('trix-change', () => {
+            this.text = document.getElementById('x').value
+        })
+    },
     watch: {
         comment(comment) {
-            /* 
-            ;(this.slug = post.slug),
-                (this.text = post.text),
-                (this.title = post.title) */
+            ;(this.text = comment.text), (this.post = comment.post)
 
             let trix = document.querySelector('trix-editor')
-            trix.editor.insertHTML(post.text)
+            trix.editor.insertHTML(comment.text)
         },
     },
     methods: {
         submitForm() {
             let data = {
-                /* 
                 text: this.text,
-                title: this.title,
-                slug: this.slug,
-                user_id: 1, */
+                post_id: +this.postId,
+                user_id: 1,
             }
 
             this.$emit('comment-form-submited', data)
