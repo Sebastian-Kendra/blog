@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="field">
-            <label class="label" @click="consol">Slug</label>
+            <label class="label">Slug</label>
             <div class="control">
                 <input
                     class="input"
@@ -139,9 +139,6 @@ export default {
         },
     },
     methods: {
-        consol() {
-            console.log(this.slug)
-        },
         submitForm() {
             let data = {
                 text: this.text,
