@@ -28,11 +28,15 @@ export default {
     },
     methods: {
         submitForm(data) {
+            let id = this.$route.params.id
+
             axios
-                .post('/api/comments', data)
+                .post(`/api/comments/${id}`, data)
                 .then((response) => {
                     this.comment = response.data
-                    this.$router.push(`/admin/posts/${response.data.post.id}`)
+                    this.$router.push(
+                        `/admin/comments/${response.data.post.id}`
+                    )
                 })
                 .catch((errors) => {
                     this.errors = errors.response.data.errors

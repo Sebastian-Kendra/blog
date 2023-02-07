@@ -2662,7 +2662,7 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     comment: function comment(_comment) {
       ;
-      this.text = _comment.text, this.post = _comment.post;
+      this.text = _comment.text, this.postId = _comment.post_id;
       var trix = document.querySelector('trix-editor');
       trix.editor.insertHTML(_comment.text);
     }
@@ -2725,9 +2725,10 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     submitForm: function submitForm(data) {
       var _this2 = this;
-      axios.post('/api/comments', data).then(function (response) {
+      var id = this.$route.params.id;
+      axios.post("/api/comments/".concat(id), data).then(function (response) {
         _this2.comment = response.data;
-        _this2.$router.push("/admin/posts/".concat(response.data.post.id));
+        _this2.$router.push("/admin/comments/".concat(response.data.post.id));
       })["catch"](function (errors) {
         _this2.errors = errors.response.data.errors;
       });

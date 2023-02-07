@@ -81,7 +81,7 @@ export default {
     },
     watch: {
         comment(comment) {
-            ;(this.text = comment.text), (this.post = comment.post)
+            ;(this.text = comment.text), (this.postId = comment.post_id)
 
             let trix = document.querySelector('trix-editor')
             trix.editor.insertHTML(comment.text)

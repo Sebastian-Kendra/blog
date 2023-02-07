@@ -26,10 +26,8 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'postId' => 'required',
-            'text' => 'required',
-        ]);
+        //funkcia na spodku urobena aby sa kod neopakoval
+        $this->_validate($request);
 
         $comment = Comment::create($request->all());
 
@@ -37,12 +35,6 @@ class CommentController extends Controller
             'sprava' => 'comment created',
             'comment' => $comment
         ], 201);
-
-        /* 
-        return response()->json([
-            'sprava' => 'to čo si chcel',
-            'tvoje data' => $request->all()
-        ]); */
     }
 
     /**
@@ -66,7 +58,17 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        //funkcia na spodku urobena aby sa kod neopakoval
+        $this->_validate($request);
+
+        $comment->update(
+            $request->all()
+        );
+
+        return response()->json([
+            'sprava' => 'comment updated',
+            'comment' => $comment
+        ], 201);
     }
 
     /**
@@ -82,5 +84,13 @@ class CommentController extends Controller
         return response()->json([
             'message' => 'comment deleted'
         ], 200);
+    }
+
+    private function _validate($request)
+    {
+        $request->validate([
+            'post_id' => 'required|integer',
+            'text' => 'required',
+        ]);
     }
 }
