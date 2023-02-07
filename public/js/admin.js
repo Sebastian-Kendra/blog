@@ -3126,9 +3126,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    consol: function consol() {
-      console.log(this.slug);
-    },
     submitForm: function submitForm() {
       var data = {
         text: this.text,
@@ -46546,9 +46543,7 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label", on: { click: _vm.consol } }, [
-        _vm._v("Slug"),
-      ]),
+      _c("label", { staticClass: "label" }, [_vm._v("Slug")]),
       _vm._v(" "),
       _c("div", { staticClass: "control" }, [
         _c("input", {
