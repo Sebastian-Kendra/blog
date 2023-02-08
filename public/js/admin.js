@@ -46362,8 +46362,8 @@ var render = function () {
             },
           ],
           staticClass: "input",
-          class: { "is-danger": _vm.errors.postId },
-          attrs: { type: "text", placeholder: "Post", name: "post-title" },
+          class: { "is-danger": _vm.errors.post_id },
+          attrs: { type: "text", placeholder: "Post", name: "post-id" },
           domProps: { value: _vm.postId },
           on: {
             input: function ($event) {
@@ -46375,10 +46375,10 @@ var render = function () {
           },
         }),
         _vm._v(" "),
-        _vm.errors.postId
+        _vm.errors.post_id
           ? _c(
               "div",
-              _vm._l(_vm.errors.postId, function (error, index) {
+              _vm._l(_vm.errors.post_id, function (error, index) {
                 return _c("p", { key: index, staticClass: "help is-danger" }, [
                   _vm._v(
                     "\n                    " +

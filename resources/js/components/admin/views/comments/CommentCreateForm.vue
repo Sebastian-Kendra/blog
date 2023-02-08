@@ -5,15 +5,15 @@
             <div class="control">
                 <input
                     class="input"
-                    :class="{ 'is-danger': errors.postId }"
+                    :class="{ 'is-danger': errors.post_id }"
                     type="text"
                     placeholder="Post"
-                    name="post-title"
+                    name="post-id"
                     v-model="postId"
                 />
-                <div v-if="errors.postId">
+                <div v-if="errors.post_id">
                     <p
-                        v-for="(error, index) in errors.postId"
+                        v-for="(error, index) in errors.post_id"
                         :key="index"
                         class="help is-danger"
                     >
