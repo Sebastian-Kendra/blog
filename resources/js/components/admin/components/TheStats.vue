@@ -41,8 +41,10 @@ export default {
         }
     },
     created() {
-        this.reloadNum
-        this.changeNum
+        window.eventBus.on('change-stats', () => {
+            console.log('stane sa vobec dačo ?', view)
+        })
+
         axios.get('/api/posts').then((response) => {
             this.oldPosts = response.data.length
         })
@@ -51,20 +53,8 @@ export default {
         })
     },
     methods: {
-        changeNum() {
-            this.newLength = this.oldPosts
-        },
-        reloadNum() {
-            window.eventBus.on('change-stats', () => {
-                console.log('stane sa vobec dačo ?')
-                /* axios.get('/api/posts').then((response) => {
-                    this.oldPosts = this.newPosts = response.data.length
-                })
-                axios.get('/api/comments').then((response) => {
-                    this.comments = response.data.length
-                }) */
-            })
-        },
+        changeNum() {},
+        reloadNum(view) {},
     },
 }
 </script>

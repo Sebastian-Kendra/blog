@@ -2510,8 +2510,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     var _this = this;
-    this.reloadNum;
-    this.changeNum;
+    window.eventBus.on('change-stats', function () {
+      console.log('stane sa vobec dačo ?', view);
+    });
     axios.get('/api/posts').then(function (response) {
       _this.oldPosts = response.data.length;
     });
@@ -2520,20 +2521,8 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    changeNum: function changeNum() {
-      this.newLength = this.oldPosts;
-    },
-    reloadNum: function reloadNum() {
-      window.eventBus.on('change-stats', function () {
-        console.log('stane sa vobec dačo ?');
-        /* axios.get('/api/posts').then((response) => {
-            this.oldPosts = this.newPosts = response.data.length
-        })
-        axios.get('/api/comments').then((response) => {
-            this.comments = response.data.length
-        }) */
-      });
-    }
+    changeNum: function changeNum() {},
+    reloadNum: function reloadNum(view) {}
   }
 });
 
