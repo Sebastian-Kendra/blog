@@ -91,7 +91,7 @@ export default {
         submitForm() {
             let data = {
                 text: this.text,
-                post_id: +this.postId,
+                post_id: this.postId,
                 user_id: 1,
             }
 

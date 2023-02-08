@@ -31,12 +31,9 @@ export default {
             let id = this.$route.params.id
 
             axios
-                .post(`/api/comments/${id}`, data)
-                .then((response) => {
-                    this.comment = response.data
-                    this.$router.push(
-                        `/admin/comments/${response.data.post.id}`
-                    )
+                .patch(`/api/comments/${id}`, data)
+                .then(() => {
+                    this.$router.push(`/admin/comments/${id}`)
                 })
                 .catch((errors) => {
                     this.errors = errors.response.data.errors

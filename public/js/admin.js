@@ -2671,7 +2671,7 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm() {
       var data = {
         text: this.text,
-        post_id: +this.postId,
+        post_id: this.postId,
         user_id: 1
       };
       this.$emit('comment-form-submited', data);
@@ -2726,9 +2726,8 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm(data) {
       var _this2 = this;
       var id = this.$route.params.id;
-      axios.post("/api/comments/".concat(id), data).then(function (response) {
-        _this2.comment = response.data;
-        _this2.$router.push("/admin/comments/".concat(response.data.post.id));
+      axios.patch("/api/comments/".concat(id), data).then(function () {
+        _this2.$router.push("/admin/comments/".concat(id));
       })["catch"](function (errors) {
         _this2.errors = errors.response.data.errors;
       });

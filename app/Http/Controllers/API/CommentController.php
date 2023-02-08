@@ -26,7 +26,6 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //funkcia na spodku urobena aby sa kod neopakoval
         $this->_validate($request);
 
         $comment = Comment::create($request->all());
@@ -58,7 +57,6 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //funkcia na spodku urobena aby sa kod neopakoval
         $this->_validate($request);
 
         $comment->update(
@@ -68,7 +66,7 @@ class CommentController extends Controller
         return response()->json([
             'sprava' => 'comment updated',
             'comment' => $comment
-        ], 201);
+        ], 200);
     }
 
     /**
@@ -86,7 +84,7 @@ class CommentController extends Controller
         ], 200);
     }
 
-    private function _validate($request)
+    private function  _validate($request)
     {
         $request->validate([
             'post_id' => 'required|integer',
