@@ -25,6 +25,8 @@ export default {
                 axios
                     .delete(`/api/${this.source}s/${this.id}`)
                     .then(() => {
+                        // reaktivita statov
+                        window.eventBus.emit('change-stats', 'comment')
                         // nitifikacia
                         window.eventBus.emit(
                             'flash',

@@ -2250,6 +2250,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       if (window.confirm('si Si si naozaj ista ? tak poista')) {
         axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/".concat(this.source, "s/").concat(this.id)).then(function () {
+          window.eventBus.emit('change-stats', 'comment');
+        }).then(function () {
           return _this.$router.push("/admin/".concat(_this.source, "s"));
         });
       }
@@ -2296,6 +2298,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       if (window.confirm('si Si si naozaj ista ? tak poista')) {
         axios["delete"]("/api/".concat(this.source, "s/").concat(this.id)).then(function () {
+          // reaktivita statov
+          window.eventBus.emit('change-stats', 'comment');
           // nitifikacia
           window.eventBus.emit('flash', "".concat(_this.source, " sa zmazal padol pre\u010D"));
         }).then(function () {

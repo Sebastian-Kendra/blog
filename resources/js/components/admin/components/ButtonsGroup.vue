@@ -49,6 +49,9 @@ export default {
             if (window.confirm('si Si si naozaj ista ? tak poista')) {
                 axios
                     .delete(`/api/${this.source}s/${this.id}`)
+                    .then(() => {
+                        window.eventBus.emit('change-stats', 'comment')
+                    })
                     .then(() => this.$router.push(`/admin/${this.source}s`))
             }
         },
