@@ -25,10 +25,12 @@ export default {
             axios
                 .post('/api/comments', data)
                 .then((response) => {
-                    /* this.comment = response.data */
                     this.$router.push(
                         `/admin/comments/${response.data.comment.id}`
                     )
+                })
+                .then(() => {
+                    window.eventBus.emit('change-stats', 'comment')
                 })
                 .catch((errors) => {
                     this.errors = errors.response.data.errors

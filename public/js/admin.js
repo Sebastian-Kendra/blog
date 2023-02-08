@@ -2505,19 +2505,40 @@ __webpack_require__.r(__webpack_exports__);
       oldPosts: '',
       newComments: '',
       oldComments: '',
-      users: ''
+      newUsers: '',
+      oldUsers: ''
     };
   },
   created: function created() {
     var _this = this;
-    window.eventBus.on('change-stats', function () {
-      console.log('stane sa vobec dačo ?', view);
+    window.eventBus.on('change-stats', function (data) {
+      if (data === 'comment') {
+        axios.get('/api/comments').then(function (response) {
+          _this.oldComments = response.data.length;
+        });
+      }
+      console.log('stane sa vobec dačo ?', data);
+
+      /* axios.get('/api/posts').then((response) => {
+          this.oldPosts = response.data.length
+      })
+      axios.get('/api/comments').then((response) => {
+          this.oldComments = response.data.length
+      })
+      axios.get('/api/users').then((response) => {
+          this.oldUsers = response.data.length
+      })
+      */
     });
+
     axios.get('/api/posts').then(function (response) {
       _this.oldPosts = response.data.length;
     });
     axios.get('/api/comments').then(function (response) {
       _this.oldComments = response.data.length;
+    });
+    axios.get('/api/users').then(function (response) {
+      _this.oldUsers = response.data.length;
     });
   },
   methods: {
@@ -2766,8 +2787,9 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm(data) {
       var _this = this;
       axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/comments', data).then(function (response) {
-        /* this.comment = response.data */
         _this.$router.push("/admin/comments/".concat(response.data.comment.id));
+      }).then(function () {
+        window.eventBus.emit('change-stats', 'comment');
       })["catch"](function (errors) {
         _this.errors = errors.response.data.errors;
       });
@@ -3118,7 +3140,6 @@ __webpack_require__.r(__webpack_exports__);
         slug: this.slug,
         user_id: 2
       };
-      window.eventBus.emit('change-stats');
       this.$emit('post-form-submited', data);
     }
   }
@@ -46246,25 +46267,19 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "level-item has-text-centered box" }, [
+        _c("div", [
+          _c("p", { staticClass: "heading" }, [_vm._v("Users")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.oldUsers))]),
+        ]),
+      ]),
       _vm._v(" "),
-      _vm._m(1),
+      _vm._m(0),
     ]),
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "level-item has-text-centered box" }, [
-      _c("div", [
-        _c("p", { staticClass: "heading" }, [_vm._v("Users")]),
-        _vm._v(" "),
-        _c("p", { staticClass: "title" }, [_vm._v("456K")]),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
