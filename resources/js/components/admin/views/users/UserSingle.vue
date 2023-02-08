@@ -35,7 +35,7 @@
             </tr>
         </table>
 
-        <buttons-group source="user" :id="user.id" />
+        <buttons-group source="user" :id="user.id" class="user-buttons" />
     </div>
 </template>
 
@@ -68,4 +68,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style>
+.user-buttons .is-success {
+    display: none;
+}
+</style>

@@ -1,28 +1,39 @@
 <template>
     <div>
         <div class="field">
-            <label class="label">User</label>
+            <label class="label">User name</label>
             <div class="control">
-                <h5 class="input">{{ comment.user.name }}</h5>
-            </div>
-        </div>
-        <div class="field">
-            <label class="label">Post slug</label>
-            <div class="control">
-                <h5 class="input">{{ comment.post.slug }}</h5>
-            </div>
-        </div>
-        <div class="field">
-            <label class="label">Message</label>
-            <div class="control content">
-                <input id="x" :value="text" type="hidden" name="text" />
-                <trix-editor
-                    input="x"
-                    :class="{ 'input is-danger': errors.text }"
-                ></trix-editor>
-                <div v-if="errors.text">
+                <input
+                    class="input"
+                    :class="{ 'is-danger': errors.name }"
+                    type="text"
+                    name="name"
+                    v-model="name"
+                />
+                <div v-if="errors.name">
                     <p
-                        v-for="(error, index) in errors.text"
+                        v-for="(error, index) in errors.name"
+                        :key="index"
+                        class="help is-danger"
+                    >
+                        {{ error }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">User email</label>
+            <div class="control">
+                <input
+                    class="input"
+                    :class="{ 'is-danger': errors.email }"
+                    type="email"
+                    name="email"
+                    v-model="email"
+                />
+                <div v-if="errors.email">
+                    <p
+                        v-for="(error, index) in errors.email"
                         :key="index"
                         class="help is-danger"
                     >
@@ -47,67 +58,37 @@
 </template>
 
 <script>
-import trix from 'trix'
-import axios from 'axios'
 export default {
     props: {
         errors: {
             type: Object,
         },
-        post: {
+        user: {
             type: Object,
         },
     },
     data() {
         return {
-            title: '',
-            text: '',
-            slug: '',
+            name: '',
+            email: '',
         }
     },
-    mounted() {
-        document.addEventListener('trix-change', () => {
-            this.text = document.getElementById('x').value
-        })
-    },
     watch: {
-        title(value) {
-            this.slug = _.trim(
-                _.deburr(value.toLowerCase())
-                    .replace(/[^\w\s]/gi, '') /* medzery všetky do pč */
-                    .replace(/ {2,}/g, ' ') /* medzery všetky do pč */
-                    .replace(/ /g, '-') /* nahradenie medzier */,
-                '-'
-            )
-        },
-        post(post) {
-            ;(this.slug = post.slug),
-                (this.text = post.text),
-                (this.title = post.title)
-
-            let trix = document.querySelector('trix-editor')
-            trix.editor.insertHTML(post.text)
+        user(user) {
+            ;(this.name = user.name), (this.email = user.email)
         },
     },
     methods: {
         submitForm() {
             let data = {
-                text: this.text,
-                title: this.title,
-                slug: this.slug,
-                user_id: 1,
+                name: this.name,
+                email: this.email,
             }
 
-            this.$emit('post-form-submited', data)
+            this.$emit('user-form-submited', data)
         },
     },
 }
 </script>
 
-<style lang="scss" scoped>
-@import '~trix/dist/trix.css';
-
-trix-editor {
-    min-height: 10em;
-}
-</style>
+<style lang="scss" scoped></style>

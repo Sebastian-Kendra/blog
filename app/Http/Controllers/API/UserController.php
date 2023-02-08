@@ -49,7 +49,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $user->update(
+            $request->all()
+        );
+
+        return response()->json([
+            'message' => 'user še upravil',
+            'post' => $user
+        ], 200);
     }
 
     /**

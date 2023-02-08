@@ -2,6 +2,7 @@
     <div>
         <table-search
             v-show="show"
+            class="user-search"
             name="user"
             :count="filtredItems.length"
             :trueCount="data.length"
@@ -59,3 +60,9 @@ export default {
     },
 }
 </script>
+
+<style>
+.user-search .level-right {
+    display: none;
+}
+</style>
