@@ -2501,12 +2501,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      newPosts: '',
-      oldPosts: '',
-      newComments: '',
-      oldComments: '',
-      newUsers: '',
-      oldUsers: ''
+      posts: '',
+      comments: '',
+      users: ''
     };
   },
   created: function created() {
@@ -2514,31 +2511,31 @@ __webpack_require__.r(__webpack_exports__);
     window.eventBus.on('change-stats', function (data) {
       if (data === 'comment') {
         axios.get('/api/comments').then(function (response) {
-          _this.oldComments = response.data.length;
+          _this.comments = response.data.length;
         });
       }
       console.log('stane sa vobec dačo ?', data);
 
       /* axios.get('/api/posts').then((response) => {
-          this.oldPosts = response.data.length
+          this.posts = response.data.length
       })
       axios.get('/api/comments').then((response) => {
-          this.oldComments = response.data.length
+          this.comments = response.data.length
       })
       axios.get('/api/users').then((response) => {
-          this.oldUsers = response.data.length
+          this.users = response.data.length
       })
       */
     });
 
     axios.get('/api/posts').then(function (response) {
-      _this.oldPosts = response.data.length;
+      _this.posts = response.data.length;
     });
     axios.get('/api/comments').then(function (response) {
-      _this.oldComments = response.data.length;
+      _this.comments = response.data.length;
     });
     axios.get('/api/users').then(function (response) {
-      _this.oldUsers = response.data.length;
+      _this.users = response.data.length;
     });
   },
   methods: {
@@ -46255,7 +46252,7 @@ var render = function () {
         _c("div", [
           _c("p", { staticClass: "heading" }, [_vm._v("Posts")]),
           _vm._v(" "),
-          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.oldPosts))]),
+          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.posts))]),
         ]),
       ]),
       _vm._v(" "),
@@ -46263,7 +46260,7 @@ var render = function () {
         _c("div", [
           _c("p", { staticClass: "heading" }, [_vm._v("Comments")]),
           _vm._v(" "),
-          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.oldComments))]),
+          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.comments))]),
         ]),
       ]),
       _vm._v(" "),
@@ -46271,7 +46268,7 @@ var render = function () {
         _c("div", [
           _c("p", { staticClass: "heading" }, [_vm._v("Users")]),
           _vm._v(" "),
-          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.oldUsers))]),
+          _c("p", { staticClass: "title" }, [_vm._v(_vm._s(_vm.users))]),
         ]),
       ]),
       _vm._v(" "),

@@ -4,19 +4,19 @@
             <div class="level-item has-text-centered box">
                 <div>
                     <p class="heading">Posts</p>
-                    <p class="title">{{ oldPosts }}</p>
+                    <p class="title">{{ posts }}</p>
                 </div>
             </div>
             <div class="level-item has-text-centered box">
                 <div>
                     <p class="heading">Comments</p>
-                    <p class="title">{{ oldComments }}</p>
+                    <p class="title">{{ comments }}</p>
                 </div>
             </div>
             <div class="level-item has-text-centered box">
                 <div>
                     <p class="heading">Users</p>
-                    <p class="title">{{ oldUsers }}</p>
+                    <p class="title">{{ users }}</p>
                 </div>
             </div>
             <div class="level-item has-text-centered box">
@@ -33,44 +33,41 @@
 export default {
     data() {
         return {
-            newPosts: '',
-            oldPosts: '',
-            newComments: '',
-            oldComments: '',
-            newUsers: '',
-            oldUsers: '',
+            posts: '',
+            comments: '',
+            users: '',
         }
     },
     created() {
         window.eventBus.on('change-stats', (data) => {
             if (data === 'comment') {
                 axios.get('/api/comments').then((response) => {
-                    this.oldComments = response.data.length
+                    this.comments = response.data.length
                 })
             }
 
             console.log('stane sa vobec dačo ?', data)
 
             /* axios.get('/api/posts').then((response) => {
-                this.oldPosts = response.data.length
+                this.posts = response.data.length
             })
             axios.get('/api/comments').then((response) => {
-                this.oldComments = response.data.length
+                this.comments = response.data.length
             })
             axios.get('/api/users').then((response) => {
-                this.oldUsers = response.data.length
+                this.users = response.data.length
             })
  */
         })
 
         axios.get('/api/posts').then((response) => {
-            this.oldPosts = response.data.length
+            this.posts = response.data.length
         })
         axios.get('/api/comments').then((response) => {
-            this.oldComments = response.data.length
+            this.comments = response.data.length
         })
         axios.get('/api/users').then((response) => {
-            this.oldUsers = response.data.length
+            this.users = response.data.length
         })
     },
     methods: {
