@@ -2251,6 +2251,8 @@ __webpack_require__.r(__webpack_exports__);
       if (window.confirm('si Si si naozaj ista ? tak poista')) {
         axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/".concat(this.source, "s/").concat(this.id)).then(function () {
           window.eventBus.emit('change-stats', 'comment');
+          window.eventBus.emit('change-stats', 'user');
+          window.eventBus.emit('change-stats', 'post');
         }).then(function () {
           return _this.$router.push("/admin/".concat(_this.source, "s"));
         });
@@ -2299,7 +2301,9 @@ __webpack_require__.r(__webpack_exports__);
       if (window.confirm('si Si si naozaj ista ? tak poista')) {
         axios["delete"]("/api/".concat(this.source, "s/").concat(this.id)).then(function () {
           // reaktivita statov
+          window.eventBus.emit('change-stats', 'post');
           window.eventBus.emit('change-stats', 'comment');
+          window.eventBus.emit('change-stats', 'user');
           // nitifikacia
           window.eventBus.emit('flash', "".concat(_this.source, " sa zmazal padol pre\u010D"));
         }).then(function () {
@@ -2518,20 +2522,17 @@ __webpack_require__.r(__webpack_exports__);
           _this.comments = response.data.length;
         });
       }
-      console.log('stane sa vobec dačo ?', data);
-
-      /* axios.get('/api/posts').then((response) => {
-          this.posts = response.data.length
-      })
-      axios.get('/api/comments').then((response) => {
-          this.comments = response.data.length
-      })
-      axios.get('/api/users').then((response) => {
-          this.users = response.data.length
-      })
-      */
+      if (data === 'post') {
+        axios.get('/api/posts').then(function (response) {
+          _this.posts = response.data.length;
+        });
+      }
+      if (data === 'user') {
+        axios.get('/api/users').then(function (response) {
+          _this.users = response.data.length;
+        });
+      }
     });
-
     axios.get('/api/posts').then(function (response) {
       _this.posts = response.data.length;
     });
@@ -2541,10 +2542,6 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/users').then(function (response) {
       _this.users = response.data.length;
     });
-  },
-  methods: {
-    changeNum: function changeNum() {},
-    reloadNum: function reloadNum(view) {}
   }
 });
 
@@ -2586,8 +2583,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var trix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! trix */ "./node_modules/trix/dist/trix.esm.min.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2646,7 +2641,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3245,6 +3239,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/posts', data).then(function (response) {
         _this.$router.push("/admin/posts/".concat(response.data.post.id));
+      }).then(function () {
+        window.eventBus.emit('change-stats', 'post');
       })["catch"](function (errors) {
         _this.errors = errors.response.data.errors;
       });
@@ -3938,7 +3934,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.notification[data-v-3cea7a62] {\r\n    font-size: 1.2rem;\r\n    position: fixed;\r\n    right: 2em;\r\n    bottom: 2em;\n}\n.fade-enter-active[data-v-3cea7a62],\r\n.fade-leave-active[data-v-3cea7a62] {\r\n    transition: opacity 0.35s;\n}\n.fade-enter[data-v-3cea7a62],\r\n.fade-leave-to[data-v-3cea7a62] {\r\n    opacity: 0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.notification[data-v-3cea7a62] {\n    font-size: 1.2rem;\n    position: fixed;\n    right: 2em;\n    bottom: 2em;\n}\n.fade-enter-active[data-v-3cea7a62],\n.fade-leave-active[data-v-3cea7a62] {\n    transition: opacity 0.35s;\n}\n.fade-enter[data-v-3cea7a62],\n.fade-leave-to[data-v-3cea7a62] {\n    opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
