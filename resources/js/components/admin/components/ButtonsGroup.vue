@@ -51,6 +51,8 @@ export default {
                     .delete(`/api/${this.source}s/${this.id}`)
                     .then(() => {
                         window.eventBus.emit('change-stats', 'comment')
+                        window.eventBus.emit('change-stats', 'user')
+                        window.eventBus.emit('change-stats', 'post')
                     })
                     .then(() => this.$router.push(`/admin/${this.source}s`))
             }

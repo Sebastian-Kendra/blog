@@ -26,7 +26,7 @@
         @include('navigation')
 
 		<h1 class="title logo">
-			<a href="/">(ಠ_ಠ)</a>
+			<a href="/">OBYČAJNÝ BLOG</a>
 		</h1>
 	</header>
     	
@@ -41,4 +41,3 @@
 
 </body>
 </html>
-

@@ -58,7 +58,6 @@
 
 <script>
 import trix from 'trix'
-import axios from 'axios'
 export default {
     props: {
         errors: {

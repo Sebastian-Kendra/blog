@@ -24,6 +24,9 @@ export default {
                 .then((response) => {
                     this.$router.push(`/admin/posts/${response.data.post.id}`)
                 })
+                .then(() => {
+                    window.eventBus.emit('change-stats', 'post')
+                })
                 .catch((errors) => {
                     this.errors = errors.response.data.errors
                 })

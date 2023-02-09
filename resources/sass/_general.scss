@@ -3,34 +3,34 @@
  */
 body,
 html {
-	background: $body-bg;
+    background: $body-bg;
 }
 
 body {
-	color: $text-color;
+    color: $text-color;
 
-	font: {
-		size: 2em;
-		family: $font-family-sans-serif;
-		weight: 600;
-	}
+    font: {
+        size: 2em;
+        family: $font-family-sans-serif;
+        weight: 600;
+    }
 
-	min-height: 100vh;
-	padding: 0 1.5rem;
+    min-height: 100vh;
+    padding: 0 1.5rem;
 }
 
 /**
  * HEADER / LOGO
  */
 .logo {
-	color: $dark;
-	font-size: 3.5em;
-	font-weight: 600;
-	margin: -0.1em 0 0;
+    color: $dark;
+    font-size: 3.5em;
+    font-weight: 600;
+    margin: 0.1em 0 0;
 
-	a:hover {
-		border: none;
-	}
+    a:hover {
+        border: none;
+    }
 }
 
 /**
@@ -38,37 +38,37 @@ body {
  */
 ul,
 ol {
-	list-style: none;
+    list-style: none;
 
-	li {
-		margin-bottom: 1.5em;
-	}
+    li {
+        margin-bottom: 1.5em;
+    }
 }
 
 /**
  * FLASH MESSAGE
  */
 .notification {
-	li {
-		margin-bottom: 0;
-	}
+    li {
+        margin-bottom: 0;
+    }
 }
 
 /**
  * POST & COMMENT META DATA
  */
 .meta {
-	.author,
-	time {
-		margin-right: 1em;
-	}
+    .author,
+    time {
+        margin-right: 1em;
+    }
 
-	.post & {
-		margin-top: 1.5em;
-	}
+    .post & {
+        margin-top: 1.5em;
+    }
 
-	time,
-	.controls {
-		white-space: nowrap;
-	}
+    time,
+    .controls {
+        white-space: nowrap;
+    }
 }

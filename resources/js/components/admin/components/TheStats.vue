@@ -45,19 +45,16 @@ export default {
                     this.comments = response.data.length
                 })
             }
-
-            console.log('stane sa vobec dačo ?', data)
-
-            /* axios.get('/api/posts').then((response) => {
-                this.posts = response.data.length
-            })
-            axios.get('/api/comments').then((response) => {
-                this.comments = response.data.length
-            })
-            axios.get('/api/users').then((response) => {
-                this.users = response.data.length
-            })
- */
+            if (data === 'post') {
+                axios.get('/api/posts').then((response) => {
+                    this.posts = response.data.length
+                })
+            }
+            if (data === 'user') {
+                axios.get('/api/users').then((response) => {
+                    this.users = response.data.length
+                })
+            }
         })
 
         axios.get('/api/posts').then((response) => {
@@ -69,10 +66,6 @@ export default {
         axios.get('/api/users').then((response) => {
             this.users = response.data.length
         })
-    },
-    methods: {
-        changeNum() {},
-        reloadNum(view) {},
     },
 }
 </script>

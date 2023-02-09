@@ -26,7 +26,9 @@ export default {
                     .delete(`/api/${this.source}s/${this.id}`)
                     .then(() => {
                         // reaktivita statov
+                        window.eventBus.emit('change-stats', 'post')
                         window.eventBus.emit('change-stats', 'comment')
+                        window.eventBus.emit('change-stats', 'user')
                         // nitifikacia
                         window.eventBus.emit(
                             'flash',
