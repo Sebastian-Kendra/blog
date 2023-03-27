@@ -107,8 +107,8 @@ export default {
             get: function () {
                 let value = _.trim(
                     _.deburr(this.title.toLowerCase())
-                        .replace(/[^\w\s]/gi, '') /// medzery všetky do pč
-                        .replace(/ {2,}/g, ' ') /// medzery všetky do pč
+                        .replace(/[^\w\s]/gi, '') /// medzery všetky 
+                        .replace(/ {2,}/g, ' ') /// medzery všetky 
                         .replace(/ /g, '-'), /// nahradenie medzier ,
                     '-'
                 )
@@ -118,8 +118,8 @@ export default {
             set: function (value) {
                 let slug = _.trim(
                     _.deburr(this.title.toLowerCase())
-                        .replace(/[^\w\s]/gi, '') /// medzery všetky do pč
-                        .replace(/ {2,}/g, ' ') /// medzery všetky do pč
+                        .replace(/[^\w\s]/gi, '') /// medzery všetky 
+                        .replace(/ {2,}/g, ' ') /// medzery všetky 
                         .replace(/ /g, '-'), /// nahradenie medzier ,
                     '-'
                 )
